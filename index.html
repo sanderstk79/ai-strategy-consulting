@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tremayne Sanders - AI Strategy Consultant</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Calibri', sans-serif;
+            line-height: 1.6;
+            color: #010101;
+            background: #faf4fc;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        nav {
+            background: #010101;
+            padding: 15px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(1, 1, 1, 0.1);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #faf4fc;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: #c3b9b7;
+            text-decoration: none;
+            font-weight: 400;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #faf4fc;
+        }
+
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .mobile-menu span {
+            width: 25px;
+            height: 3px;
+            background: #faf4fc;
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #47294c 0%, #816f7d 100%);
+            color: #faf4fc;
+            padding: 120px 0 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="%23faf4fc" opacity="0.05"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(1deg); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            opacity: 0;
+            animation: slideUp 0.8s ease-out forwards;
+        }
+
+        .hero .subtitle {
+            font-size: 1.4rem;
+            margin-bottom: 30px;
+            opacity: 0;
+            animation: slideUp 0.8s ease-out 0.2s forwards;
+        }
+
+        .hero .description {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 40px;
+            opacity: 0;
+            animation: slideUp 0.8s ease-out 0.4s forwards;
+            color: #c3b9b7;
+        }
+
+        @keyframes slideUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            opacity: 0;
+            animation: slideUp 0.8s ease-out 0.6s forwards;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: #faf4fc;
+            color: #47294c;
+        }
+
+        .btn-primary:hover {
+            background: #c3b9b7;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #faf4fc;
+            border: 2px solid #faf4fc;
+        }
+
+        .btn-secondary:hover {
+            background: #faf4fc;
+            color: #47294c;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 80px 0;
+            background: #faf4fc;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: #010101;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .section-header p {
+            font-size: 1.2rem;
+            color: #816f7d;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .service-card {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(1, 1, 1, 0.1);
+            transition: all 0.3s ease;
+            border: 1px solid #c3b9b7;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(71, 41, 76, 0.15);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            color: #010101;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .service-card p {
+            color: #816f7d;
+            margin-bottom: 20px;
+        }
+
+        .service-price {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #47294c;
+            margin-bottom: 20px;
+        }
+
+        /* About Preview */
+        .about-preview {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #c3b9b7 0%, #816f7d 100%);
+            color: #faf4fc;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #faf4fc;
+        }
+
+        .stat-label {
+            color: #c3b9b7;
+            font-size: 0.9rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 80px 0;
+            background: #010101;
+            color: #faf4fc;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            color: #c3b9b7;
+        }
+
+        /* Footer */
+        footer {
+            background: #47294c;
+            color: #c3b9b7;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .footer-section h3 {
+            color: #faf4fc;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .footer-section a {
+            color: #c3b9b7;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #faf4fc;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #816f7d;
+            padding-top: 30px;
+            margin-top: 30px;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: flex;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .stats {
+                grid-template-columns: repeat(4, 1fr);
+            }
+
+            .section-header h2 {
+                font-size: 2rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                padding: 100px 0 60px;
+            }
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .service-card {
+                padding: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">Tremayne Sanders</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="pricing.html">Pricing</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>AI Strategy Consultant</h1>
+                <p class="subtitle">Automating Content & Campaigns for Global Scale</p>
+                <p class="description">I help companies eliminate content creation bottlenecks and scale their digital presence internationally using AI-powered automation tools.</p>
+                <div class="cta-buttons">
+                    <a href="pricing.html" class="btn btn-primary">View Services</a>
+                    <a href="contact.html" class="btn btn-secondary">Let's Talk</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="services">
+        <div class="container">
+            <div class="section-header">
+                <h2>Transform Your Digital Operations</h2>
+                <p>From strategy to implementation, I deliver AI-powered solutions that drive real results</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <span class="service-icon">🚀</span>
+                    <h3>AI Strategy Audit</h3>
+                    <p>Complete analysis of your digital operations with automation opportunities and 90-day roadmap.</p>
+                    <div class="service-price">$2,500</div>
+                    <a href="pricing.html" class="btn btn-primary">Learn More</a>
+                </div>
+                <div class="service-card">
+                    <span class="service-icon">⚡</span>
+                    <h3>Content Automation</h3>
+                    <p>Custom AI systems that generate content, optimize campaigns, and automate social media workflows.</p>
+                    <div class="service-price">$7,500</div>
+                    <a href="pricing.html" class="btn btn-primary">Learn More</a>
+                </div>
+                <div class="service-card">
+                    <span class="service-icon">🌍</span>
+                    <h3>International Expansion</h3>
+                    <p>Multi-market content localization and cross-cultural campaign frameworks for global scaling.</p>
+                    <div class="service-price">$12,500</div>
+                    <a href="pricing.html" class="btn btn-primary">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="about-preview">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>From Digital Diplomacy to AI Innovation</h2>
+                    <p>I've managed digital campaigns across 30+ countries for the British Foreign & Commonwealth Office, trained ambassadors on digital strategy, and now I'm building AI automation tools for the next generation of businesses.</p>
+                    <p>My unique combination of international experience and AI expertise helps companies navigate complex digital transformations while scaling globally.</p>
+                    <a href="about.html" class="btn btn-primary">My Story</a>
+                </div>
+                <div class="stats">
+                    <div class="stat">
+                        <div class="stat-number">30+</div>
+                        <div class="stat-label">Countries Managed</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">7+</div>
+                        <div class="stat-label">Years FCO Experience</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">100+</div>
+                        <div class="stat-label">Executives Trained</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">IBM</div>
+                        <div class="stat-label">AI Certified</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to Transform Your Digital Operations?</h2>
+            <p>Let's discuss how AI automation can eliminate your content bottlenecks and scale your business globally.</p>
+            <a href="contact.html" class="btn btn-primary">Start the Conversation</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Services</h3>
+                    <p><a href="pricing.html">AI Strategy Audit</a></p>
+                    <p><a href="pricing.html">Content Automation</a></p>
+                    <p><a href="pricing.html">International Expansion</a></p>
+                </div>
+                <div class="footer-section">
+                    <h3>About</h3>
+                    <p><a href="about.html">My Background</a></p>
+                    <p><a href="projects.html">Recent Projects</a></p>
+                    <p><a href="blog.html">Insights & Articles</a></p>
+                </div>
+                <div class="footer-section">
+                    <h3>Connect</h3>
+                    <p><a href="mailto:sanderstk@gmail.com">sanderstk@gmail.com</a></p>
+                    <p><a href="https://linkedin.com/in/tremayne-sanders-bb68924/" target="_blank">LinkedIn</a></p>
+                    <p><a href="contact.html">Contact Form</a></p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Tremayne Sanders. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
