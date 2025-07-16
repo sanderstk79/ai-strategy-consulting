@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me - Tremayne Sanders</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Calibri', sans-serif;
+            line-height: 1.6;
+            color: #010101;
+            background: #faf4fc;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        nav {
+            background: #010101;
+            padding: 15px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(1, 1, 1, 0.1);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #faf4fc;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: #c3b9b7;
+            text-decoration: none;
+            font-weight: 400;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: #faf4fc;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #47294c 0%, #816f7d 100%);
+            color: #faf4fc;
+            padding: 120px 0 80px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: #c3b9b7;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 80px 0;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 60px;
+            margin-bottom: 80px;
+        }
+
+        .profile-section {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(1, 1, 1, 0.1);
+            text-align: center;
+            height: fit-content;
+        }
+
+        .profile-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #47294c, #816f7d);
+            margin: 0 auto 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: #faf4fc;
+        }
+
+        .profile-details h3 {
+            font-size: 1.5rem;
+            color: #010101;
+            margin-bottom: 10px;
+        }
+
+        .profile-details p {
+            color: #816f7d;
+            margin-bottom: 20px;
+        }
+
+        .credentials {
+            background: #faf4fc;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #c3b9b7;
+        }
+
+        .credentials h4 {
+            color: #47294c;
+            margin-bottom: 15px;
+        }
+
+        .credentials ul {
+            list-style: none;
+            text-align: left;
+        }
+
+        .credentials li {
+            color: #816f7d;
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .credentials li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #47294c;
+            font-weight: bold;
+        }
+
+        .story-section {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(1, 1, 1, 0.1);
+        }
+
+        .story-section h2 {
+            font-size: 2.5rem;
+            color: #010101;
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+
+        .story-section h3 {
+            font-size: 1.8rem;
+            color: #47294c;
+            margin: 30px 0 15px;
+            font-weight: 600;
+        }
+
+        .story-section p {
+            font-size: 1.1rem;
+            color: #816f7d;
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        .highlight {
+            background: linear-gradient(135deg, #c3b9b7, #816f7d);
+            color: #faf4fc;
+            padding: 30px;
+            border-radius: 12px;
+            margin: 40px 0;
+        }
+
+        .highlight h3 {
+            color: #faf4fc;
+            margin-bottom: 15px;
+        }
+
+        /* Experience Timeline */
+        .timeline {
+            background: #010101;
+            color: #faf4fc;
+            padding: 80px 0;
+            margin: 80px 0;
+        }
+
+        .timeline h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+            font-weight: 700;
+        }
+
+        .timeline-items {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline-item {
+            background: #47294c;
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            border-left: 5px solid #faf4fc;
+        }
+
+        .timeline-item h3 {
+            color: #faf4fc;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .timeline-item .period {
+            color: #c3b9b7;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        .timeline-item p {
+            color: #c3b9b7;
+            line-height: 1.6;
+        }
+
+        /* Skills Section */
+        .skills-section {
+            background: white;
+            padding: 60px 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(1, 1, 1, 0.1);
+            margin-bottom: 60px;
+        }
+
+        .skills-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #010101;
+            margin-bottom: 40px;
+            font-weight: 700;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .skill-category {
+            background: #faf4fc;
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid #c3b9b7;
+        }
+
+        .skill-category h3 {
+            color: #47294c;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .skill-category ul {
+            list-style: none;
+        }
+
+        .skill-category li {
+            color: #816f7d;
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .skill-category li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: #47294c;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, #47294c, #816f7d);
+            color: #faf4fc;
+            padding: 60px 40px;
+            border-radius: 12px;
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: #c3b9b7;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: #faf4fc;
+            color: #47294c;
+        }
+
+        .btn-primary:hover {
+            background: #c3b9b7;
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            background: #47294c;
+            color: #c3b9b7;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .footer-section h3 {
+            color: #faf4fc;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .footer-section a {
+            color: #c3b9b7;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #faf4fc;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #816f7d;
+            padding-top: 30px;
+            margin-top: 30px;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .content-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline {
+                padding: 60px 0;
+                margin: 60px 0;
+            }
+
+            .profile-image {
+                width: 150px;
+                height: 150px;
+                font-size: 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">Tremayne Sanders</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html" class="active">About</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="pricing.html">Pricing</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="container">
+            <h1>From Digital Diplomacy to AI Innovation</h1>
+            <p>Building AI-powered solutions that eliminate content bottlenecks and scale businesses globally</p>
+        </div>
+    </section>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="content-grid">
+                <div class="profile-section">
+                    <div class="profile-image">TS</div>
+                    <div class="profile-details">
+                        <h3>Tremayne Sanders</h3>
+                        <p>AI Strategy Consultant<br>Fort Mill, South Carolina</p>
+                        <div class="credentials">
+                            <h4>Certifications</h4>
+                            <ul>
+                                <li>IBM AI Developer</li>
+                                <li>Certified ScrumMaster (CSM)</li>
+                                <li>Computer Information Systems</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="story-section">
+                    <h2>My Story</h2>
+                    <p>I've spent my career at the intersection of technology and human communication. What started as managing web content for the British Foreign & Commonwealth Office evolved into something I never expected - building AI systems that help businesses automate their most challenging digital operations.</p>
+
+                    <h3>The Government Years</h3>
+                    <p>For seven years, I managed digital campaigns across 30+ countries for the FCO. I trained ambassadors and high commissioners on digital strategy, developed content management systems that worked across cultures, and learned how to make complex technology feel human.</p>
+
+                    <p>This wasn't just about social media posts. I was helping diplomatic missions navigate crisis communications, cultural sensitivities, and the challenge of reaching audiences who spoke different languages, used different platforms, and had completely different expectations.</p>
+
+                    <div class="highlight">
+                        <h3>The Realization</h3>
+                        <p>Most companies face the same challenges I solved in government - how do you create content that works across different markets? How do you maintain brand consistency while scaling internationally? How do you automate without losing the human touch?</p>
+                    </div>
+
+                    <h3>The Pivot to AI</h3>
+                    <p>In 2019, I left the FCO to start my own consulting practice. I began helping startups and growing companies with their digital strategies, but I kept running into the same problem - they were drowning in content creation.</p>
+
+                    <p>That's when I discovered AI wasn't just about chatbots and automation. It was about solving the exact problems I'd been working on for years, but at scale. So I got my IBM AI Developer certification and started building actual solutions.</p>
+
+                    <h3>What I'm Building Now</h3>
+                    <p>Today, I create AI-powered systems that generate content, optimize campaigns, and automate social media workflows. But unlike most AI consultants, I understand the strategic and cultural complexity behind these tools.</p>
+
+                    <p>I'm currently developing AI automation tools for fractional executives - helping C-suite professionals scale their personal brands and thought leadership. It's the perfect combination of my government experience (high-stakes communication) and my AI expertise (scalable automation).</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <section class="timeline">
+        <div class="container">
+            <h2>Professional Journey</h2>
+            <div class="timeline-items">
+                <div class="timeline-item">
+                    <h3>Digital Consultant - IndieBred Holdings</h3>
+                    <div class="period">November 2023 - Present</div>
+                    <p>Developing AI-powered digital asset management and content strategy for creative platform. Leading multi-phased launch campaign and establishing social media automation workflows.</p>
+                </div>
+                
+                <div class="timeline-item">
+                    <h3>Co-Founder - MTLLSM</h3>
+                    <div class="period">December 2021 - Present</div>
+                    <p>Building blockchain project intelligence platform with integrated content management and AI-powered analytics. Overseeing UX design and content strategy for technical audience.</p>
+                </div>
+                
+                <div class="timeline-item">
+                    <h3>Co-Founder - SanVenture</h3>
+                    <div class="period">January 2018 - Present</div>
+                    <p>Comprehensive digital strategy consulting for diverse brands. Specializing in AI automation, international expansion, and cross-platform content optimization.</p>
+                </div>
+                
+                <div class="timeline-item">
+                    <h3>Regional Digital Diplomacy Officer - British FCO</h3>
+                    <div class="period">January 2012 - March 2019</div>
+                    <p>Managed digital content across 30+ countries. Developed digital asset management policies, trained ambassadors on crisis communication, and led data-driven campaign optimization.</p>
+                </div>
+                
+                <div class="timeline-item">
+                    <h3>Web Communications Officer - British FCO</h3>
+                    <div class="period">September 2007 - January 2012</div>
+                    <p>Enhanced FCO's digital presence across Americas region. Delivered training on content management and digital tools to diplomatic staff.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="skills-section">
+        <div class="container">
+            <h2>Core Expertise</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>AI & Automation</h3>
+                    <ul>
+                        <li>AI Strategy & Implementation</li>
+                        <li>Content Generation Systems</li>
+                        <li>Campaign Optimization</li>
+                        <li>Social Media Automation</li>
+                        <li>Performance Analytics</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>Digital Strategy</h3>
+                    <ul>
+                        <li>International Digital Marketing</li>
+                        <li>Cross-Cultural Communications</li>
+                        <li>Digital Transformation</li>
+                        <li>Brand Management</li>
+                        <li>Crisis Communications</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>Technical Skills</h3>
+                    <ul>
+                        <li>HTML, CSS, SQL</li>
+                        <li>Adobe Creative Suite</li>
+                        <li>Google Analytics</li>
+                        <li>Content Management Systems</li>
+                        <li>Data Analysis & Reporting</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>Leadership</h3>
+                    <ul>
+                        <li>Agile Project Management</li>
+                        <li>Cross-Functional Teams</li>
+                        <li>Executive Training</li>
+                        <li>Stakeholder Management</li>
+                        <li>Change Management</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <h2>Let's Work Together</h2>
+            <p>Ready to eliminate content bottlenecks and scale your digital operations with AI? I'd love to hear about your biggest challenges.</p>
+            <a href="contact.html" class="btn btn-primary">Start the Conversation</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Services</h3>
+                    <p><a href="pricing.html">AI Strategy Audit</a></p>
+                    <p><a href="pricing.html">Content Automation</a></p>
+                    <p><a href="pricing.html">International Expansion</a></p>
+                </div>
+                <div class="footer-section">
+                    <h3>About</h3>
+                    <p><a href="about.html">My Background</a></p>
+                    <p><a href="projects.html">Recent Projects</a></p>
+                    <p><a href="blog.html">Insights & Articles</a></p>
+                </div>
+                <div class="footer-section">
+                    <h3>Connect</h3>
+                    <p><a href="mailto:sanderstk@gmail.com">sanderstk@gmail.com</a></p>
+                    <p><a href="https://linkedin.com/in/tremayne-sanders-bb68924/" target="_blank">LinkedIn</a></p>
+                    <p><a href="contact.html">Contact Form</a></p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Tremayne Sanders. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
