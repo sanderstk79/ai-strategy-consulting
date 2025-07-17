@@ -1,0 +1,1130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alex Rivera | Strategy Consultant</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #FF6B35;
+            --secondary-color: #F7931E;
+            --accent-color: #1A1A1A;
+            --text-primary: #1A1A1A;
+            --text-secondary: #666666;
+            --bg-primary: #FFFFFF;
+            --bg-secondary: #F8F9FA;
+            --bg-dark: #121212;
+            --neon-green: #39FF14;
+            --electric-blue: #00BFFF;
+            --hot-pink: #FF1493;
+        }
+
+        body {
+            font-family: 'Inter', 'Calibri', sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: var(--bg-primary);
+            overflow-x: hidden;
+            transition: all 0.3s ease;
+        }
+
+        body.dark-mode {
+            background: var(--bg-dark);
+            color: #FFFFFF;
+        }
+
+        .cursor-follow {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.1s ease;
+            mix-blend-mode: difference;
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1rem 2rem;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        body.dark-mode .nav {
+            background: rgba(18, 18, 18, 0.95);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 500;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        body.dark-mode .nav-links a {
+            color: #FFFFFF;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .theme-toggle {
+            background: none;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .theme-toggle:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding: 0 2rem;
+            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+        }
+
+        body.dark-mode .hero {
+            background: linear-gradient(135deg, var(--bg-dark) 0%, #1e1e1e 100%);
+        }
+
+        .hero-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-text {
+            z-index: 10;
+        }
+
+        .hero-title {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 900;
+            line-height: 0.9;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            font-weight: 300;
+            margin-bottom: 2rem;
+            color: var(--text-secondary);
+        }
+
+        body.dark-mode .hero-subtitle {
+            color: #CCCCCC;
+        }
+
+        .hero-description {
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        body.dark-mode .hero-description {
+            color: #CCCCCC;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(255, 107, 53, 0.3);
+        }
+
+        .hero-visual {
+            position: relative;
+            height: 500px;
+        }
+
+        .floating-card {
+            position: absolute;
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        body.dark-mode .floating-card {
+            background: rgba(30, 30, 30, 0.9);
+            color: white;
+        }
+
+        .floating-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .card-1 {
+            top: 20%;
+            left: 10%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .card-2 {
+            top: 50%;
+            right: 20%;
+            animation: float 6s ease-in-out infinite 2s;
+        }
+
+        .card-3 {
+            bottom: 20%;
+            left: 30%;
+            animation: float 6s ease-in-out infinite 4s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* Stats Section */
+        .stats-section {
+            padding: 5rem 2rem;
+            background: var(--accent-color);
+            color: white;
+        }
+
+        .stats-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            text-align: center;
+        }
+
+        .stat-item {
+            padding: 2rem;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--primary-color);
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 1.2rem;
+            margin-top: 0.5rem;
+            opacity: 0.9;
+        }
+
+        /* About Section */
+        .about-section {
+            padding: 5rem 2rem;
+            background: var(--bg-secondary);
+        }
+
+        body.dark-mode .about-section {
+            background: #1e1e1e;
+        }
+
+        .about-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .section-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 900;
+            margin-bottom: 2rem;
+            line-height: 1.1;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+        }
+
+        body.dark-mode .about-text {
+            color: #CCCCCC;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .skill-tag {
+            padding: 0.8rem 1.5rem;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 25px;
+            text-align: center;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            transform: scale(1.05);
+            background: var(--secondary-color);
+        }
+
+        /* Projects Section */
+        .projects-section {
+            padding: 5rem 2rem;
+        }
+
+        .projects-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        body.dark-mode .project-card {
+            background: #1e1e1e;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+        }
+
+        .project-image {
+            height: 250px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+        }
+
+        .project-content {
+            padding: 2rem;
+        }
+
+        .project-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .project-description {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        body.dark-mode .project-description {
+            color: #CCCCCC;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .project-tag {
+            padding: 0.3rem 0.8rem;
+            background: var(--bg-secondary);
+            border-radius: 15px;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        body.dark-mode .project-tag {
+            background: #333;
+            color: #CCCCCC;
+        }
+
+        /* Services Section */
+        .services-section {
+            padding: 5rem 2rem;
+            background: var(--bg-secondary);
+        }
+
+        body.dark-mode .services-section {
+            background: #1e1e1e;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+            max-width: 1400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .service-card {
+            background: white;
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        body.dark-mode .service-card {
+            background: #1e1e1e;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        .service-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .service-price {
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--primary-color);
+            margin: 1rem 0;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            padding: 5rem 2rem;
+            background: var(--accent-color);
+            color: white;
+            text-align: center;
+        }
+
+        .contact-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .contact-form {
+            display: grid;
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .form-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .form-input {
+            padding: 1rem;
+            border: none;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .form-input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .form-textarea {
+            padding: 1rem;
+            border: none;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1rem;
+            min-height: 120px;
+            resize: vertical;
+            backdrop-filter: blur(10px);
+        }
+
+        .form-textarea::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Footer */
+        .footer {
+            padding: 3rem 2rem;
+            background: var(--bg-dark);
+            color: white;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .footer-section a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--primary-color);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .social-links a {
+            display: inline-block;
+            padding: 0.8rem;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            transform: translateY(-3px);
+            background: var(--secondary-color);
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .about-container {
+                grid-template-columns: 1fr;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-group {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-title {
+                font-size: 3rem;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Blog preview section */
+        .blog-section {
+            padding: 5rem 2rem;
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+            max-width: 1400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .blog-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        body.dark-mode .blog-card {
+            background: #1e1e1e;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .blog-image {
+            height: 200px;
+            background: linear-gradient(135deg, var(--neon-green), var(--electric-blue));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+        }
+
+        .blog-content {
+            padding: 1.5rem;
+        }
+
+        .blog-date {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        body.dark-mode .blog-date {
+            color: #999;
+        }
+
+        .blog-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .blog-excerpt {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        body.dark-mode .blog-excerpt {
+            color: #CCCCCC;
+        }
+    </style>
+</head>
+<body>
+    <!-- Custom Cursor -->
+    <div class="cursor-follow"></div>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="#" class="logo">AR</a>
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#projects">Work</a>
+                <a href="#services">Services</a>
+                <a href="#blog">Blog</a>
+                <a href="#contact">Contact</a>
+                <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-text">
+                <h1 class="hero-title">Strategy<br>Redefined</h1>
+                <p class="hero-subtitle">I transform complex business challenges into breakthrough opportunities</p>
+                <p class="hero-description">
+                    Senior Strategy Consultant with 12+ years helping Fortune 500 companies and emerging leaders navigate disruption, optimize operations, and unlock exponential growth. Because sometimes the answer isn't what you think—it's what you haven't thought of yet.
+                </p>
+                <a href="#contact" class="cta-button">Let's Build Something Extraordinary</a>
+            </div>
+            <div class="hero-visual">
+                <div class="floating-card card-1">
+                    <h3>₹2.3B</h3>
+                    <p>Revenue Generated</p>
+                </div>
+                <div class="floating-card card-2">
+                    <h3>89%</h3>
+                    <p>Client Retention</p>
+                </div>
+                <div class="floating-card card-3">
+                    <h3>156</h3>
+                    <p>Projects Delivered</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="stats-container">
+            <div class="stat-item fade-in">
+                <span class="stat-number">12+</span>
+                <span class="stat-label">Years of Strategic Excellence</span>
+            </div>
+            <div class="stat-item fade-in">
+                <span class="stat-number">₹2.3B</span>
+                <span class="stat-label">Revenue Impact Created</span>
+            </div>
+            <div class="stat-item fade-in">
+                <span class="stat-number">47</span>
+                <span class="stat-label">Fortune 500 Clients</span>
+            </div>
+            <div class="stat-item fade-in">
+                <span class="stat-number">89%</span>
+                <span class="stat-label">Client Retention Rate</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="about-container">
+            <div class="fade-in">
+                <h2 class="section-title">The Thing About Strategy</h2>
+                <p class="about-text">
+                    Look, everyone thinks they understand strategy. But here's what I've learned after 12 years of working with CEOs who couldn't sleep and CFOs who were running out of answers—strategy isn't about perfect plans. It's about... well, it's about seeing what others miss.
+                </p>
+                <p class="about-text">
+                    I started at McKinsey (because of course I did), but the real education came later. Watching a $50M logistics company save itself by doing the exact opposite of what the market research said. Helping a tech startup become profitable by killing their most promising product line. That's when I realized—
+                </p>
+                <p class="about-text">
+                    The best strategies often feel wrong at first. Like swimming upstream when everyone else is floating with the current. But that's where the breakthrough happens. That's where billion-dollar moats get built.
+                </p>
+                <div class="skills-grid">
+                    <div class="skill-tag">Digital Transformation</div>
+                    <div class="skill-tag">Market Entry Strategy</div>
+                    <div class="skill-tag">Operational Excellence</div>
+                    <div class="skill-tag">M&A Advisory</div>
+                    <div class="skill-tag">Growth Strategy</div>
+                    <div class="skill-tag">Change Management</div>
+                </div>
+            </div>
+            <div class="fade-in">
+                <div style="height: 400px; background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); border-radius: 20px; display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem;">
+                    📊 Strategy Visualization
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects-section">
+        <div class="projects-container">
+            <h2 class="section-title fade-in">Work That Moves Needles</h2>
+            <div class="projects-grid">
+                <div class="project-card fade-in">
+                    <div class="project-image">🚀</div>
+                    <div class="project-content">
+                        <h3 class="project-title">Global Logistics Transformation</h3>
+                        <p class="project-description">
+                            Redesigned supply chain architecture for multinational retailer. Result: 34% cost reduction, 67% faster delivery times. Sometimes you have to break things to rebuild them stronger.
+                        </p>
+                        <div class="project-tags">
+                            <span class="project-tag">Supply Chain</span>
+                            <span class="project-tag">Digital Transformation</span>
+                            <span class="project-tag">Cost Optimization</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card fade-in">
+                    <div class="project-image">💡</div>
+                    <div class="project-content">
+                        <h3 class="project-title">FinTech Market Entry</h3>
+                        <p class="project-description">
+                            Launched digital banking platform in Southeast Asia. From zero to 2M customers in 18 months. The secret? We ignored the incumbents and focused on the underbanked.
+                        </p>
+                        <div class="project-tags">
+                            <span class="project-tag">Market Entry</span>
+                            <span class="project-tag">FinTech</span>
+                            <span class="project-tag">Growth Strategy</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card fade-in">
+                    <div class="project-image">⚡</div>
+                    <div class="project-content">
+                        <h3 class="project-title">Healthcare System Optimization</h3>
+                        <p class="project-description">
+                            Streamlined operations for hospital network. Patient wait times down 56%, staff satisfaction up 43%. Health outcomes improved across all metrics. Systems thinking at work.
+                        </p>
+                        <div class="project-tags">
+                            <span class="project-tag">Healthcare</span>
+                            <span class="project-tag">Operations</span>
+                            <span class="project-tag">Process Excellence</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card fade-in">
+                    <div class="project-image">🎯</div>
+                    <div class="project-content">
+                        <h3 class="project-title">Tech Startup Scaling</h3>
+                        <p class="project-description">
+                            Strategic pivot for SaaS company struggling with churn. Repositioned from horizontal tool to vertical solution. ARR grew from $2M to $15M in 24 months.
+                        </p>
+                        <div class="project-tags">
+                            <span class="project-tag">SaaS</span>
+                            <span class="project-tag">Product Strategy</span>
+                            <span class="project-tag">Scaling</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services-section">
+        <div class="projects-container">
+            <h2 class="section-title fade-in">How We Work Together</h2>
+            <div class="services-grid">
+                <div class="service-card fade-in">
+                    <div class="service-icon">🎯</div>
+                    <h3 class="service-title">Strategic Assessment</h3>
+                    <div class="service-price">₹2.5L</div>
+                    <p>6-week deep dive into your business. Market analysis, competitive intelligence, internal audit. You'll know exactly where you stand and what needs to change.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">🚀</div>
+                    <h3 class="service-title">Growth Strategy</h3>
+                    <div class="service-price">₹8L</div>
+                    <p>12-week comprehensive growth strategy. From market entry to scaling operations. Includes implementation roadmap and team training.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">⚡</div>
+                    <h3 class="service-title">Transformation Program</h3>
+                    <div class="service-price">₹15L</div>
+                    <p>6-month end-to-end transformation. Digital, operational, cultural—whatever your organization needs. White-glove service with guaranteed results.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section id="blog" class="blog-section">
+        <div class="projects-container">
+            <h2 class="section-title fade-in">Thoughts That Don't Fit In LinkedIn Posts</h2>
+            <div class="blog-grid">
+                <div class="blog-card fade-in">
+                    <div class="blog-image">📊</div>
+                    <div class="blog-content">
+                        <div class="blog-date">March 15, 2025</div>
+                        <h3 class="blog-title">Why Most Digital Transformations Fail (And How to Fix Yours)</h3>
+                        <p class="blog-excerpt">
+                            It's not the technology. It's not the budget. It's not even the timeline. After watching 47 digital transformations, I finally figured out what actually breaks them...
+                        </p>
+                    </div>
+                </div>
+                <div class="blog-card fade-in">
+                    <div class="blog-image">🎯</div>
+                    <div class="blog-content">
+                        <div class="blog-date">March 8, 2025</div>
+                        <h3 class="blog-title">The Contrarian's Guide to Market Entry</h3>
+                        <p class="blog-excerpt">
+                            When everyone zigs, zag. When everyone builds for the obvious customer, find the invisible one. Here's how three companies won by doing exactly what the experts said not to do...
+                        </p>
+                    </div>
+                </div>
+                <div class="blog-card fade-in">
+                    <div class="blog-image">💡</div>
+                    <div class="blog-content">
+                        <div class="blog-date">February 28, 2025</div>
+                        <h3 class="blog-title">The Strategy Paradox: Why Perfect Plans Fail</h3>
+                        <p class="blog-excerpt">
+                            The more detailed your strategic plan, the more likely it is to fail spectacularly. Sounds backwards? Let me explain why uncertainty is your friend...
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="contact-container">
+            <h2 class="section-title fade-in">Let's Talk Strategy</h2>
+            <p class="fade-in">Ready to turn complexity into clarity? Drop me a line. First coffee is on me.</p>
+            <form class="contact-form fade-in">
+                <div class="form-group">
+                    <input type="text" class="form-input" placeholder="Your Name" required>
+                    <input type="email" class="form-input" placeholder="Email Address" required>
+                </div>
+                <input type="text" class="form-input" placeholder="Company & Role" required>
+                <textarea class="form-textarea" placeholder="Tell me about your challenge. What's keeping you up at night?" required></textarea>
+                <button type="submit" class="cta-button">Start the Conversation</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Connect</h3>
+                <a href="mailto:alex@strategyconsulting.com">alex@strategyconsulting.com</a>
+                <a href="tel:+919876543210">+91 98765 43210</a>
+                <a href="#">Download Case Studies</a>
+            </div>
+            <div class="footer-section">
+                <h3>Locations</h3>
+                <a href="#">Mumbai (HQ)</a>
+                <a href="#">Bangalore</a>
+                <a href="#">Dubai</a>
+                <a href="#">Singapore</a>
+            </div>
+            <div class="footer-section">
+                <h3>Resources</h3>
+                <a href="#">Strategy Framework Guide</a>
+                <a href="#">Digital Transformation Toolkit</a>
+                <a href="#">Market Entry Playbook</a>
+            </div>
+        </div>
+        <div class="social-links">
+            <a href="#">📧</a>
+            <a href="#">💼</a>
+            <a href="#">🐦</a>
+            <a href="#">📚</a>
+        </div>
+        <p style="margin-top: 2rem; opacity: 0.7;">© 2025 Alex Rivera. This website runs on caffeine and contrarian thinking.</p>
+    </footer>
+
+    <script>
+        // Custom cursor
+        const cursor = document.querySelector('.cursor-follow');
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        // Dark mode toggle
+        function toggleTheme() {
+            document.body.classList.toggle('dark-mode');
+            const button = document.querySelector('.theme-toggle');
+            button.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
+        }
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Form submission
+        document.querySelector('.contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thanks for reaching out! I\'ll get back to you within 24 hours.');
+        });
+
+        // Add hover effects to cards
+        document.querySelectorAll('.project-card, .service-card, .blog-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Parallax effect for hero section
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+        });
+
+        // Dynamic stats counter
+        function animateCounter(element, target) {
+            let current = 0;
+            const increment = target / 100;
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    current = target;
+                    clearInterval(timer);
+                }
+                element.textContent = Math.floor(current);
+            }, 20);
+        }
+
+        // Initialize counters when stats section is visible
+        const statsSection = document.querySelector('.stats-section');
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Animate number counters here if needed
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        });
+        statsObserver.observe(statsSection);
+    </script>
+</body>
+</html>
