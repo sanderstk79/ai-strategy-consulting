@@ -3,281 +3,446 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pricing & Services - Tremayne Sanders</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <title>Pricing - Tremayne Sanders</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --color-primary: #010101;
+            --color-secondary: #c3b9b7;
+            --color-accent: #816f7d;
+            --color-dark: #47294c;
+            --color-light: #faf4fc;
+            --font-primary: 'Inter', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+            --border-radius: 24px;
+            --border-radius-sm: 12px;
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 2rem;
+            --spacing-lg: 4rem;
+            --spacing-xl: 6rem;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        body {
-            font-family: 'Inter', 'Calibri', sans-serif;
-            line-height: 1.6;
-            color: #010101;
-            background: #faf4fc;
+        html {
+            scroll-behavior: smooth;
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
+        body {
+            font-family: var(--font-primary);
+            background: var(--color-light);
+            color: var(--color-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
         }
 
         /* Navigation */
-        nav {
-            background: #010101;
-            padding: 15px 0;
+        .nav {
             position: fixed;
-            width: 100%;
             top: 0;
+            left: 0;
+            right: 0;
             z-index: 1000;
-            box-shadow: 0 2px 20px rgba(1, 1, 1, 0.1);
+            padding: var(--spacing-sm) var(--spacing-md);
+            backdrop-filter: blur(20px);
+            background: rgba(250, 244, 252, 0.8);
+            border-bottom: 1px solid rgba(195, 185, 183, 0.2);
         }
 
         .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
         }
 
-        .logo {
-            font-size: 1.5rem;
+        .nav-logo {
+            font-size: 1.25rem;
             font-weight: 700;
-            color: #faf4fc;
+            color: var(--color-primary);
             text-decoration: none;
+            font-family: var(--font-mono);
         }
 
-        .nav-links {
+        .nav-menu {
             display: flex;
             list-style: none;
-            gap: 30px;
+            gap: var(--spacing-md);
         }
 
-        .nav-links a {
-            color: #c3b9b7;
+        .nav-menu a {
+            color: var(--color-accent);
             text-decoration: none;
-            font-weight: 400;
+            font-weight: 500;
+            font-size: 0.9rem;
+            letter-spacing: 0.02em;
+            position: relative;
             transition: color 0.3s ease;
         }
 
-        .nav-links a:hover, .nav-links a.active {
-            color: #faf4fc;
+        .nav-menu a:hover,
+        .nav-menu a.active {
+            color: var(--color-primary);
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--color-accent);
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu a:hover::after,
+        .nav-menu a.active::after {
+            width: 100%;
         }
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, #47294c 0%, #816f7d 100%);
-            color: #faf4fc;
-            padding: 120px 0 80px;
+            padding: calc(80px + var(--spacing-xl)) var(--spacing-md) var(--spacing-xl);
+            background: linear-gradient(135deg, var(--color-light) 0%, rgba(195, 185, 183, 0.1) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-container {
+            max-width: 1400px;
+            margin: 0 auto;
             text-align: center;
         }
 
-        .hero h1 {
-            font-size: 3rem;
-            font-weight: 700;
-            margin-bottom: 20px;
+        .hero-badge {
+            display: inline-block;
+            background: rgba(129, 111, 125, 0.1);
+            border: 1px solid var(--color-accent);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin-bottom: var(--spacing-md);
+            color: var(--color-accent);
+            font-family: var(--font-mono);
         }
 
-        .hero p {
-            font-size: 1.3rem;
-            color: #c3b9b7;
+        .hero-title {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: var(--spacing-md);
+            background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--color-accent);
             max-width: 600px;
             margin: 0 auto;
         }
 
-        /* Main Content */
-        .main-content {
-            padding: 80px 0;
+        /* Pricing Toggle */
+        .pricing-toggle {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: var(--spacing-sm);
+            margin: var(--spacing-lg) 0;
         }
 
-        /* Package Grid */
-        .packages-section {
-            margin-bottom: 80px;
+        .toggle-label {
+            font-weight: 600;
+            color: var(--color-accent);
         }
 
-        .section-header {
-            text-align: center;
-            margin-bottom: 60px;
+        .toggle-switch {
+            position: relative;
+            width: 60px;
+            height: 30px;
+            background: var(--color-secondary);
+            border-radius: 15px;
+            cursor: pointer;
+            transition: background 0.3s ease;
         }
 
-        .section-header h2 {
-            font-size: 2.5rem;
-            color: #010101;
-            margin-bottom: 20px;
-            font-weight: 700;
+        .toggle-switch.active {
+            background: var(--color-primary);
         }
 
-        .section-header p {
-            font-size: 1.2rem;
-            color: #816f7d;
-            max-width: 600px;
+        .toggle-slider {
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 24px;
+            height: 24px;
+            background: white;
+            border-radius: 50%;
+            transition: transform 0.3s ease;
+        }
+
+        .toggle-switch.active .toggle-slider {
+            transform: translateX(30px);
+        }
+
+        /* Pricing Grid */
+        .pricing {
+            padding: var(--spacing-xl) var(--spacing-md);
+            background: var(--color-light);
+        }
+
+        .pricing-container {
+            max-width: 1400px;
             margin: 0 auto;
         }
 
         .pricing-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-            margin-bottom: 60px;
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-xl);
         }
 
-        .package-card {
+        .pricing-card {
             background: white;
-            border-radius: 15px;
-            padding: 40px;
-            box-shadow: 0 15px 35px rgba(1, 1, 1, 0.1);
-            transition: all 0.3s ease;
+            border-radius: var(--border-radius);
+            padding: var(--spacing-lg);
+            box-shadow: 0 20px 40px rgba(1, 1, 1, 0.08);
+            transition: all 0.4s ease;
             position: relative;
-            overflow: hidden;
             border: 2px solid transparent;
+            overflow: hidden;
         }
 
-        .package-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 25px 50px rgba(71, 41, 76, 0.15);
+        .pricing-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 40px 80px rgba(71, 41, 76, 0.15);
         }
 
-        .package-card.featured {
-            border-color: #47294c;
-            transform: scale(1.02);
+        .pricing-card.featured {
+            border-color: var(--color-primary);
+            transform: scale(1.05);
         }
 
-        .package-card.featured::before {
+        .pricing-card.featured::before {
             content: 'MOST POPULAR';
             position: absolute;
-            top: 20px;
+            top: var(--spacing-sm);
             right: -30px;
-            background: linear-gradient(135deg, #47294c, #816f7d);
-            color: #faf4fc;
-            padding: 8px 40px;
-            font-size: 0.8rem;
-            font-weight: 600;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-dark));
+            color: var(--color-light);
+            padding: 0.5rem 2rem;
+            font-size: 0.75rem;
+            font-weight: 700;
             transform: rotate(45deg);
+            font-family: var(--font-mono);
+            letter-spacing: 0.05em;
         }
 
-        .package-header {
+        .pricing-header {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: var(--spacing-lg);
         }
 
-        .package-icon {
+        .pricing-icon {
             font-size: 3rem;
-            margin-bottom: 20px;
+            margin-bottom: var(--spacing-sm);
             display: block;
         }
 
-        .package-title {
-            font-size: 1.8rem;
+        .pricing-title {
+            font-size: 1.5rem;
             font-weight: 700;
-            color: #010101;
-            margin-bottom: 10px;
+            color: var(--color-primary);
+            margin-bottom: var(--spacing-xs);
         }
 
-        .package-price {
-            font-size: 2.8rem;
+        .pricing-subtitle {
+            color: var(--color-accent);
+            font-size: 0.9rem;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .pricing-price {
+            display: flex;
+            align-items: baseline;
+            justify-content: center;
+            gap: 0.25rem;
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .price-currency {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--color-accent);
+        }
+
+        .price-amount {
+            font-size: 3rem;
             font-weight: 700;
-            color: #47294c;
-            margin-bottom: 5px;
+            color: var(--color-primary);
+            font-family: var(--font-mono);
         }
 
-        .package-duration {
-            color: #816f7d;
-            font-size: 1rem;
-            margin-bottom: 15px;
+        .price-period {
+            color: var(--color-accent);
+            font-size: 0.9rem;
         }
 
-        .package-description {
-            color: #816f7d;
+        .pricing-description {
+            color: var(--color-accent);
             font-style: italic;
-            margin-bottom: 25px;
+            text-align: center;
+            margin-bottom: var(--spacing-md);
         }
 
-        .package-features {
+        .pricing-features {
             list-style: none;
-            margin-bottom: 30px;
+            margin-bottom: var(--spacing-lg);
         }
 
-        .package-features li {
-            margin-bottom: 12px;
-            padding-left: 25px;
+        .pricing-features li {
+            margin-bottom: 0.75rem;
+            padding-left: 2rem;
             position: relative;
-            color: #010101;
+            color: var(--color-primary);
+            font-weight: 500;
         }
 
-        .package-features li::before {
+        .pricing-features li::before {
             content: '✓';
             position: absolute;
             left: 0;
-            color: #47294c;
-            font-weight: bold;
+            color: var(--color-dark);
+            font-weight: 700;
             font-size: 1.2rem;
         }
 
-        .cta-button {
+        .pricing-cta {
             display: block;
             width: 100%;
-            background: linear-gradient(135deg, #47294c, #816f7d);
-            color: #faf4fc;
-            padding: 15px 30px;
+            background: var(--color-primary);
+            color: var(--color-light);
+            padding: 1rem 2rem;
             text-decoration: none;
-            border-radius: 8px;
+            border-radius: var(--border-radius-sm);
             font-weight: 600;
             text-align: center;
             transition: all 0.3s ease;
             font-size: 1rem;
+            position: relative;
+            overflow: hidden;
         }
 
-        .cta-button:hover {
+        .pricing-cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .pricing-cta:hover::before {
+            left: 100%;
+        }
+
+        .pricing-cta:hover {
+            background: var(--color-dark);
             transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(71, 41, 76, 0.3);
+        }
+
+        .pricing-card.featured .pricing-cta {
+            background: linear-gradient(135deg, var(--color-primary), var(--color-dark));
         }
 
         /* Consulting Services */
-        .consulting-section {
-            background: white;
-            padding: 60px 40px;
-            border-radius: 15px;
-            box-shadow: 0 15px 35px rgba(1, 1, 1, 0.1);
-            margin-bottom: 80px;
+        .consulting {
+            padding: var(--spacing-xl) var(--spacing-md);
+            background: var(--color-primary);
+            color: var(--color-light);
+        }
+
+        .consulting-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .section-badge {
+            display: inline-block;
+            background: rgba(250, 244, 252, 0.1);
+            border: 1px solid var(--color-secondary);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin-bottom: var(--spacing-sm);
+            font-family: var(--font-mono);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--color-secondary);
+            max-width: 600px;
+            margin: 0 auto;
         }
 
         .consulting-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
+            gap: var(--spacing-lg);
         }
 
         .consulting-card {
-            background: #faf4fc;
-            padding: 30px;
-            border-radius: 12px;
-            border: 2px solid #c3b9b7;
+            background: rgba(250, 244, 252, 0.05);
+            border: 1px solid rgba(250, 244, 252, 0.1);
+            border-radius: var(--border-radius);
+            padding: var(--spacing-lg);
             transition: all 0.3s ease;
         }
 
         .consulting-card:hover {
-            border-color: #47294c;
-            transform: translateY(-5px);
+            background: rgba(250, 244, 252, 0.1);
+            transform: translateY(-8px);
         }
 
         .consulting-card h3 {
-            font-size: 1.5rem;
-            color: #010101;
-            margin-bottom: 10px;
+            font-size: 1.3rem;
             font-weight: 600;
+            margin-bottom: var(--spacing-xs);
         }
 
-        .consulting-card .price {
+        .consulting-price {
             font-size: 2rem;
             font-weight: 700;
-            color: #47294c;
-            margin-bottom: 15px;
+            color: var(--color-light);
+            font-family: var(--font-mono);
+            margin-bottom: var(--spacing-sm);
         }
 
         .consulting-card ul {
@@ -285,9 +450,9 @@
         }
 
         .consulting-card li {
-            color: #816f7d;
-            margin-bottom: 8px;
-            padding-left: 20px;
+            color: var(--color-secondary);
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
             position: relative;
         }
 
@@ -295,274 +460,348 @@
             content: '▸';
             position: absolute;
             left: 0;
-            color: #47294c;
+            color: var(--color-light);
         }
 
-        /* Quick Start Section */
-        .quick-start-section {
-            background: #010101;
-            color: #faf4fc;
-            padding: 60px 40px;
-            border-radius: 15px;
-            margin-bottom: 80px;
-        }
-
-        .quick-start-section h2 {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 40px;
-            font-weight: 700;
-        }
-
-        .quick-start-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .quick-start-item {
-            background: #47294c;
-            padding: 30px;
-            border-radius: 12px;
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        .quick-start-item:hover {
-            background: #816f7d;
-            transform: translateY(-5px);
-        }
-
-        .quick-start-item h3 {
-            font-size: 1.5rem;
-            margin-bottom: 10px;
-            color: #faf4fc;
-        }
-
-        .quick-start-item .price {
-            font-size: 2.2rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-            color: #faf4fc;
-        }
-
-        .quick-start-item .duration {
-            color: #c3b9b7;
-            margin-bottom: 20px;
-        }
-
-        .quick-start-item ul {
+        /* Quick Start */
+        .quick-start-card ul {
             list-style: none;
             text-align: left;
+            margin-bottom: var(--spacing-md);
         }
 
-        .quick-start-item li {
-            color: #c3b9b7;
-            margin-bottom: 8px;
-            padding-left: 20px;
+        .quick-start-card li {
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
             position: relative;
+            color: var(--color-secondary);
         }
 
-        .quick-start-item li::before {
+        .quick-start-card li::before {
             content: '✓';
             position: absolute;
             left: 0;
-            color: #faf4fc;
+            color: var(--color-light);
+            font-weight: 700;
+        }
+
+        .quick-start-cta {
+            background: var(--color-light);
+            color: var(--color-dark);
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--border-radius-sm);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .quick-start-cta:hover {
+            background: var(--color-secondary);
+            transform: translateY(-2px);
         }
 
         /* Guarantees Section */
-        .guarantees-section {
-            background: linear-gradient(135deg, #c3b9b7, #816f7d);
-            color: #faf4fc;
-            padding: 60px 40px;
-            border-radius: 15px;
-            margin-bottom: 80px;
+        .guarantees {
+            padding: var(--spacing-xl) var(--spacing-md);
+            background: linear-gradient(135deg, var(--color-secondary), var(--color-accent));
+            color: var(--color-light);
         }
 
-        .guarantees-section h2 {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 40px;
-            font-weight: 700;
+        .guarantees-container {
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .guarantees-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            gap: var(--spacing-lg);
         }
 
-        .guarantee-item {
+        .guarantee-card {
             background: rgba(250, 244, 252, 0.1);
-            padding: 30px;
-            border-radius: 12px;
-            backdrop-filter: blur(10px);
             border: 1px solid rgba(250, 244, 252, 0.2);
+            border-radius: var(--border-radius);
+            padding: var(--spacing-lg);
+            text-align: center;
+            backdrop-filter: blur(10px);
         }
 
-        .guarantee-item h3 {
-            color: #faf4fc;
-            margin-bottom: 15px;
+        .guarantee-icon {
+            font-size: 2.5rem;
+            margin-bottom: var(--spacing-sm);
+            display: block;
+        }
+
+        .guarantee-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: var(--spacing-sm);
             font-weight: 600;
         }
 
-        .guarantee-item p {
-            color: #faf4fc;
+        .guarantee-card p {
+            color: var(--color-light);
             line-height: 1.6;
         }
 
         /* Payment Terms */
-        .payment-section {
+        .payment-terms {
+            padding: var(--spacing-xl) var(--spacing-md);
             background: white;
-            padding: 50px 40px;
-            border-radius: 15px;
-            box-shadow: 0 15px 35px rgba(1, 1, 1, 0.1);
-            margin-bottom: 60px;
-            text-align: center;
         }
 
-        .payment-section h2 {
-            font-size: 2rem;
-            color: #010101;
-            margin-bottom: 30px;
-            font-weight: 700;
+        .payment-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
         }
 
         .payment-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            margin-top: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-lg);
         }
 
         .payment-item {
-            background: #faf4fc;
-            padding: 25px;
-            border-radius: 8px;
-            border: 1px solid #c3b9b7;
+            background: var(--color-light);
+            border: 2px solid var(--color-secondary);
+            border-radius: var(--border-radius-sm);
+            padding: var(--spacing-md);
+            transition: all 0.3s ease;
+        }
+
+        .payment-item:hover {
+            border-color: var(--color-primary);
+            transform: translateY(-4px);
         }
 
         .payment-item h3 {
-            color: #47294c;
-            margin-bottom: 10px;
+            color: var(--color-primary);
+            margin-bottom: var(--spacing-xs);
             font-weight: 600;
         }
 
         .payment-item p {
-            color: #816f7d;
+            color: var(--color-accent);
             font-size: 0.9rem;
         }
 
-        /* CTA Section */
-        .final-cta {
-            background: linear-gradient(135deg, #47294c, #816f7d);
-            color: #faf4fc;
-            padding: 60px 40px;
-            border-radius: 15px;
-            text-align: center;
-            margin-bottom: 60px;
+        /* FAQ Section */
+        .faq {
+            padding: var(--spacing-xl) var(--spacing-md);
+            background: var(--color-primary);
+            color: var(--color-light);
         }
 
-        .final-cta h2 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            font-weight: 700;
+        .faq-container {
+            max-width: 900px;
+            margin: 0 auto;
         }
 
-        .final-cta p {
-            font-size: 1.2rem;
-            margin-bottom: 30px;
-            color: #c3b9b7;
+        .faq-item {
+            background: rgba(250, 244, 252, 0.05);
+            border: 1px solid rgba(250, 244, 252, 0.1);
+            border-radius: var(--border-radius-sm);
+            margin-bottom: var(--spacing-sm);
+            overflow: hidden;
         }
 
-        .btn-large {
-            padding: 18px 40px;
-            background: #faf4fc;
-            color: #47294c;
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: 600;
+        .faq-question {
+            width: 100%;
+            background: none;
+            border: none;
+            color: var(--color-light);
+            padding: var(--spacing-md);
+            text-align: left;
             font-size: 1.1rem;
-            transition: all 0.3s ease;
-            display: inline-block;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.3s ease;
         }
 
-        .btn-large:hover {
-            background: #c3b9b7;
-            transform: translateY(-3px);
-            box-shadow: 0 15px 30px rgba(250, 244, 252, 0.3);
+        .faq-question:hover {
+            background: rgba(250, 244, 252, 0.05);
+        }
+
+        .faq-toggle {
+            font-size: 1.5rem;
+            font-weight: 700;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-toggle {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            padding: 0 var(--spacing-md) var(--spacing-md);
+            color: var(--color-secondary);
+            line-height: 1.6;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 200px;
+        }
+
+        /* CTA Section */
+        .cta {
+            padding: var(--spacing-xl) var(--spacing-md);
+            background: linear-gradient(135deg, var(--color-dark), var(--color-accent));
+            color: var(--color-light);
+            text-align: center;
+        }
+
+        .cta-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cta h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .cta p {
+            font-size: 1.2rem;
+            color: var(--color-secondary);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .btn-cta {
+            background: var(--color-light);
+            color: var(--color-dark);
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: var(--border-radius-sm);
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-cta:hover {
+            background: var(--color-secondary);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(250, 244, 252, 0.3);
         }
 
         /* Footer */
-        footer {
-            background: #47294c;
-            color: #c3b9b7;
-            padding: 40px 0;
-            text-align: center;
+        .footer {
+            background: var(--color-primary);
+            color: var(--color-secondary);
+            padding: var(--spacing-lg) var(--spacing-md) var(--spacing-md);
         }
 
-        .footer-content {
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-bottom: 30px;
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-md);
         }
 
         .footer-section h3 {
-            color: #faf4fc;
-            margin-bottom: 20px;
+            color: var(--color-light);
+            margin-bottom: var(--spacing-sm);
             font-weight: 600;
         }
 
         .footer-section a {
-            color: #c3b9b7;
+            color: var(--color-secondary);
             text-decoration: none;
             transition: color 0.3s ease;
+            display: block;
+            margin-bottom: 0.5rem;
         }
 
         .footer-section a:hover {
-            color: #faf4fc;
+            color: var(--color-light);
         }
 
         .footer-bottom {
-            border-top: 1px solid #816f7d;
-            padding-top: 30px;
-            margin-top: 30px;
+            border-top: 1px solid var(--color-accent);
+            padding-top: var(--spacing-md);
+            text-align: center;
         }
 
-        /* Mobile Responsive */
+        /* Responsive Design */
         @media (max-width: 768px) {
-            .nav-links {
+            .nav-menu {
                 display: none;
-            }
-
-            .hero h1 {
-                font-size: 2.5rem;
             }
 
             .pricing-grid {
                 grid-template-columns: 1fr;
             }
 
-            .package-card.featured {
+            .pricing-card.featured {
                 transform: none;
             }
 
-            .consulting-section, .quick-start-section, .guarantees-section {
-                padding: 40px 20px;
-            }
-
-            .quick-start-grid {
+            .consulting-grid,
+            .quick-start-grid,
+            .guarantees-grid {
                 grid-template-columns: 1fr;
             }
+
+            .payment-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .pricing-toggle {
+                flex-direction: column;
+                gap: var(--spacing-xs);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .payment-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .pricing-card {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .pricing-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .pricing-card.featured.visible {
+            transform: scale(1.05);
         }
     </style>
 </head>
 <body>
-    <nav>
+    <!-- Navigation -->
+    <nav class="nav">
         <div class="nav-container">
-            <a href="index.html" class="logo">Tremayne Sanders</a>
-            <ul class="nav-links">
+            <a href="index.html" class="nav-logo">TS.</a>
+            <ul class="nav-menu">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="projects.html">Projects</a></li>
@@ -573,248 +812,512 @@
         </div>
     </nav>
 
+    <!-- Hero Section -->
     <section class="hero">
-        <div class="container">
-            <h1>Pricing & Services</h1>
-            <p>Transform your digital operations with AI-powered solutions designed for rapid growth and international scaling</p>
+        <div class="hero-container fade-in">
+            <span class="hero-badge">Pricing</span>
+            <h1 class="hero-title">Transform Your Digital Operations</h1>
+            <p class="hero-subtitle">Choose the perfect package to eliminate content bottlenecks and scale your business globally</p>
+            
+            <div class="pricing-toggle">
+                <span class="toggle-label">Projects</span>
+                <div class="toggle-switch" id="pricingToggle">
+                    <div class="toggle-slider"></div>
+                </div>
+                <span class="toggle-label">Consulting</span>
+            </div>
         </div>
     </section>
 
-    <main class="main-content">
-        <div class="container">
-            <!-- Strategic Packages -->
-            <section class="packages-section">
-                <div class="section-header">
-                    <h2>🚀 Strategic Packages</h2>
-                    <p>Fixed-price projects designed to solve specific business challenges</p>
+    <!-- Strategic Packages -->
+    <section class="pricing" id="packages">
+        <div class="pricing-container">
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <span class="pricing-icon">🚀</span>
+                        <h3 class="pricing-title">AI Strategy Audit</h3>
+                        <p class="pricing-subtitle">Perfect for companies ready to scale</p>
+                        <div class="pricing-price">
+                            <span class="price-currency">$</span>
+                            <span class="price-amount">2,500</span>
+                        </div>
+                        <p class="pricing-description">5 Business Days</p>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>Complete digital operations analysis</li>
+                        <li>AI automation opportunity mapping</li>
+                        <li>90-day implementation roadmap</li>
+                        <li>30-minute strategy presentation</li>
+                        <li>Follow-up consultation included</li>
+                    </ul>
+                    <a href="mailto:sanderstk@gmail.com?subject=AI Strategy Audit Inquiry" class="pricing-cta">Get Your Audit</a>
                 </div>
 
-                <div class="pricing-grid">
-                    <div class="package-card">
-                        <div class="package-header">
-                            <span class="package-icon">🚀</span>
-                            <h3 class="package-title">AI Digital Strategy Audit</h3>
-                            <div class="package-price">$2,500</div>
-                            <div class="package-duration">5 Business Days</div>
-                            <p class="package-description">Perfect for companies ready to scale but unsure where to start</p>
+                <div class="pricing-card featured">
+                    <div class="pricing-header">
+                        <span class="pricing-icon">⚡</span>
+                        <h3 class="pricing-title">Content Automation Setup</h3>
+                        <p class="pricing-subtitle">Perfect for growing companies</p>
+                        <div class="pricing-price">
+                            <span class="price-currency">$</span>
+                            <span class="price-amount">7,500</span>
                         </div>
-                        <ul class="package-features">
-                            <li>Complete digital operations analysis</li>
-                            <li>AI automation opportunity mapping</li>
-                            <li>90-day implementation roadmap</li>
-                            <li>30-minute strategy presentation</li>
-                            <li>Follow-up consultation included</li>
-                        </ul>
-                        <a href="mailto:sanderstk@gmail.com?subject=AI Digital Strategy Audit" class="cta-button">Get Your Audit</a>
+                        <p class="pricing-description">2-3 Weeks</p>
                     </div>
-
-                    <div class="package-card featured">
-                        <div class="package-header">
-                            <span class="package-icon">⚡</span>
-                            <h3 class="package-title">Content Automation Setup</h3>
-                            <div class="package-price">$7,500</div>
-                            <div class="package-duration">2-3 Weeks</div>
-                            <p class="package-description">Perfect for growing companies drowning in content demands</p>
-                        </div>
-                        <ul class="package-features">
-                            <li>Custom AI content generation system</li>
-                            <li>Social media automation workflow</li>
-                            <li>Campaign optimization tools</li>
-                            <li>Team training & handoff</li>
-                            <li>30-day support included</li>
-                        </ul>
-                        <a href="mailto:sanderstk@gmail.com?subject=Content Automation Setup" class="cta-button">Start Automating</a>
-                    </div>
-
-                    <div class="package-card">
-                        <div class="package-header">
-                            <span class="package-icon">🌍</span>
-                            <h3 class="package-title">International Expansion Strategy</h3>
-                            <div class="package-price">$12,500</div>
-                            <div class="package-duration">3-4 Weeks</div>
-                            <p class="package-description">Perfect for companies expanding globally</p>
-                        </div>
-                        <ul class="package-features">
-                            <li>Multi-market content localization system</li>
-                            <li>Cross-cultural campaign framework</li>
-                            <li>Regional automation workflows</li>
-                            <li>Performance tracking dashboard</li>
-                            <li>Quarterly strategy review</li>
-                        </ul>
-                        <a href="mailto:sanderstk@gmail.com?subject=International Expansion Strategy" class="cta-button">Go Global</a>
-                    </div>
-
-                    <div class="package-card">
-                        <div class="package-header">
-                            <span class="package-icon">🏆</span>
-                            <h3 class="package-title">Full Digital Transformation</h3>
-                            <div class="package-price">$25,000+</div>
-                            <div class="package-duration">6-8 Weeks</div>
-                            <p class="package-description">Perfect for established companies ready for major transformation</p>
-                        </div>
-                        <ul class="package-features">
-                            <li>Complete AI-powered digital ecosystem</li>
-                            <li>Advanced automation workflows</li>
-                            <li>International scaling infrastructure</li>
-                            <li>Team training & change management</li>
-                            <li>90-day optimization period</li>
-                        </ul>
-                        <a href="mailto:sanderstk@gmail.com?subject=Full Digital Transformation" class="cta-button">Transform Now</a>
-                    </div>
+                    <ul class="pricing-features">
+                        <li>Custom AI content generation system</li>
+                        <li>Social media automation workflow</li>
+                        <li>Campaign optimization tools</li>
+                        <li>Team training & handoff</li>
+                        <li>30-day support included</li>
+                    </ul>
+                    <a href="mailto:sanderstk@gmail.com?subject=Content Automation Setup" class="pricing-cta">Start Automating</a>
                 </div>
-            </section>
 
-            <!-- Consulting Services -->
-            <section class="consulting-section">
-                <div class="section-header">
-                    <h2>⚡ Consulting Services</h2>
-                    <p>Flexible hourly and daily rates for ongoing support and strategic guidance</p>
-                </div>
-                <div class="consulting-grid">
-                    <div class="consulting-card">
-                        <h3>Strategic Consulting</h3>
-                        <div class="price">$175/hour</div>
-                        <ul>
-                            <li>AI strategy development</li>
-                            <li>Digital transformation planning</li>
-                            <li>Technology stack recommendations</li>
-                            <li>Team workshops & training</li>
-                        </ul>
-                    </div>
-                    <div class="consulting-card">
-                        <h3>Implementation Support</h3>
-                        <div class="price">$150/hour</div>
-                        <ul>
-                            <li>Technical guidance during rollouts</li>
-                            <li>Troubleshooting & optimization</li>
-                            <li>Staff training sessions</li>
-                            <li>Performance analysis</li>
-                        </ul>
-                    </div>
-                    <div class="consulting-card">
-                        <h3>Executive Advisory</h3>
-                        <div class="price">$1,200/day</div>
-                        <ul>
-                            <li>C-suite strategy sessions</li>
-                            <li>Board presentations</li>
-                            <li>Crisis digital response</li>
-                            <li>High-stakes campaign planning</li>
-                        </ul>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Quick Start Options -->
-            <section class="quick-start-section">
-                <div class="container">
-                    <h2>💡 Quick Start Options</h2>
-                    <div class="quick-start-grid">
-                        <div class="quick-start-item">
-                            <h3>Rapid Assessment</h3>
-                            <div class="price">$750</div>
-                            <div class="duration">3 hours</div>
-                            <ul>
-                                <li>Current state analysis</li>
-                                <li>Priority recommendations</li>
-                                <li>Implementation timeline</li>
-                                <li><em>Perfect for urgent decisions</em></li>
-                            </ul>
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <span class="pricing-icon">🌍</span>
+                        <h3 class="pricing-title">International Expansion</h3>
+                        <p class="pricing-subtitle">Perfect for global scaling</p>
+                        <div class="pricing-price">
+                            <span class="price-currency">$</span>
+                            <span class="price-amount">12,500</span>
                         </div>
+                        <p class="pricing-description">3-4 Weeks</p>
                     </div>
+                    <ul class="pricing-features">
+                        <li>Multi-market content localization</li>
+                        <li>Cross-cultural campaign framework</li>
+                        <li>Regional automation workflows</li>
+                        <li>Performance tracking dashboard</li>
+                        <li>Quarterly strategy review</li>
+                    </ul>
+                    <a href="mailto:sanderstk@gmail.com?subject=International Expansion Strategy" class="pricing-cta">Go Global</a>
                 </div>
-            </section>
 
-            <!-- Guarantees -->
-            <section class="guarantees-section">
-                <div class="container">
-                    <h2>📈 Value Guarantees</h2>
-                    <div class="guarantees-grid">
-                        <div class="guarantee-item">
-                            <h3>ROI Promise</h3>
-                            <p>If your audit doesn't identify at least $10k in potential savings/revenue within 90 days, I'll refund 50% of the fee.</p>
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <span class="pricing-icon">🏆</span>
+                        <h3 class="pricing-title">Digital Transformation</h3>
+                        <p class="pricing-subtitle">Complete enterprise solution</p>
+                        <div class="pricing-price">
+                            <span class="price-currency">$</span>
+                            <span class="price-amount">25,000</span>
+                            <span class="price-period">+</span>
                         </div>
-                        <div class="guarantee-item">
-                            <h3>Speed Guarantee</h3>
-                            <p>All audits delivered within 5 business days or 10% discount applied.</p>
-                        </div>
-                        <div class="guarantee-item">
-                            <h3>Success Metrics</h3>
-                            <p>Every project includes specific, measurable KPIs agreed upon upfront.</p>
-                        </div>
+                        <p class="pricing-description">6-8 Weeks</p>
                     </div>
+                    <ul class="pricing-features">
+                        <li>Complete AI-powered ecosystem</li>
+                        <li>Advanced automation workflows</li>
+                        <li>International scaling infrastructure</li>
+                        <li>Team training & change management</li>
+                        <li>90-day optimization period</li>
+                    </ul>
+                    <a href="mailto:sanderstk@gmail.com?subject=Digital Transformation Project" class="pricing-cta">Transform Now</a>
                 </div>
-            </section>
-
-            <!-- Payment Terms -->
-            <section class="payment-section">
-                <h2>🤝 Payment Terms</h2>
-                <div class="payment-grid">
-                    <div class="payment-item">
-                        <h3>Packages</h3>
-                        <p>50% upfront, 50% on delivery</p>
-                    </div>
-                    <div class="payment-item">
-                        <h3>Hourly Work</h3>
-                        <p>Weekly invoicing, Net 15 terms</p>
-                    </div>
-                    <div class="payment-item">
-                        <h3>Retainers</h3>
-                        <p>Monthly billing, 30-day notice</p>
-                    </div>
-                    <div class="payment-item">
-                        <h3>Rush Projects</h3>
-                        <p>25% surcharge for <5 day delivery</p>
-                    </div>
-                </div>
-                <p style="margin-top: 30px; color: #816f7d; font-style: italic;">All prices in USD. International clients: pricing adjusted for local market conditions.</p>
-            </section>
-
-            <!-- Final CTA -->
-            <section class="final-cta">
-                <h2>Ready to Get Started?</h2>
-                <p>Let's discuss your biggest digital challenge and create a solution that drives real results.</p>
-                <a href="mailto:sanderstk@gmail.com?subject=Let's Discuss My Digital Challenge" class="btn-large">Start the Conversation</a>
-            </section>
+            </div>
         </div>
-    </main>
+    </section>
 
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>Services</h3>
-                    <p><a href="pricing.html">AI Strategy Audit</a></p>
-                    <p><a href="pricing.html">Content Automation</a></p>
-                    <p><a href="pricing.html">International Expansion</a></p>
+    <!-- Consulting Services -->
+    <section class="consulting" id="consulting">
+        <div class="consulting-container">
+            <div class="section-header fade-in">
+                <span class="section-badge">Consulting</span>
+                <h2 class="section-title">Flexible Consulting Services</h2>
+                <p class="section-subtitle">Hourly and daily rates for ongoing support and strategic guidance</p>
+            </div>
+            
+            <div class="consulting-grid">
+                <div class="consulting-card fade-in">
+                    <h3>Strategic Consulting</h3>
+                    <div class="consulting-price">$175/hour</div>
+                    <ul>
+                        <li>AI strategy development</li>
+                        <li>Digital transformation planning</li>
+                        <li>Technology stack recommendations</li>
+                        <li>Team workshops & training</li>
+                    </ul>
                 </div>
-                <div class="footer-section">
-                    <h3>About</h3>
-                    <p><a href="about.html">My Background</a></p>
-                    <p><a href="projects.html">Recent Projects</a></p>
-                    <p><a href="blog.html">Insights & Articles</a></p>
+                
+                <div class="consulting-card fade-in">
+                    <h3>Implementation Support</h3>
+                    <div class="consulting-price">$150/hour</div>
+                    <ul>
+                        <li>Technical guidance during rollouts</li>
+                        <li>Troubleshooting & optimization</li>
+                        <li>Staff training sessions</li>
+                        <li>Performance analysis</li>
+                    </ul>
                 </div>
-                <div class="footer-section">
-                    <h3>Connect</h3>
-                    <p><a href="mailto:sanderstk@gmail.com">sanderstk@gmail.com</a></p>
-                    <p><a href="https://linkedin.com/in/tremayne-sanders-bb68924/" target="_blank">LinkedIn</a></p>
-                    <p><a href="contact.html">Contact Form</a></p>
+                
+                <div class="consulting-card fade-in">
+                    <h3>Executive Advisory</h3>
+                    <div class="consulting-price">$1,200/day</div>
+                    <ul>
+                        <li>C-suite strategy sessions</li>
+                        <li>Board presentations</li>
+                        <li>Crisis digital response</li>
+                        <li>High-stakes campaign planning</li>
+                    </ul>
                 </div>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 Tremayne Sanders. All rights reserved.</p>
+        </div>
+    </section>
+
+    <!-- Quick Start Options -->
+    <section class="quick-start">
+        <div class="quick-start-container">
+            <div class="section-header fade-in">
+                <span class="section-badge">Quick Start</span>
+                <h2 class="section-title">Get Started Today</h2>
+                <p class="section-subtitle">Fast-track options for immediate results</p>
             </div>
+            
+            <div class="quick-start-grid">
+                <div class="quick-start-card fade-in">
+                    <h3>Strategy Call</h3>
+                    <div class="price">$150</div>
+                    <div class="duration">60 minutes</div>
+                    <ul>
+                        <li>Immediate problem diagnosis</li>
+                        <li>Quick win recommendations</li>
+                        <li>Project scoping & next steps</li>
+                        <li>Same-day booking available</li>
+                    </ul>
+                    <a href="mailto:sanderstk@gmail.com?subject=Strategy Call Request" class="quick-start-cta">Book Now</a>
+                </div>
+                
+                <div class="quick-start-card fade-in">
+                    <h3>Rapid Assessment</h3>
+                    <div class="price">$750</div>
+                    <div class="duration">3 hours</div>
+                    <ul>
+                        <li>Current state analysis</li>
+                        <li>Priority recommendations</li>
+                        <li>Implementation timeline</li>
+                        <li>Perfect for urgent decisions</li>
+                    </ul>
+                    <a href="mailto:sanderstk@gmail.com?subject=Rapid Assessment Request" class="quick-start-cta">Get Assessment</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Guarantees -->
+    <section class="guarantees">
+        <div class="guarantees-container">
+            <div class="section-header fade-in">
+                <span class="section-badge">Guarantees</span>
+                <h2 class="section-title">Your Success Is Guaranteed</h2>
+            </div>
+            
+            <div class="guarantees-grid">
+                <div class="guarantee-card fade-in">
+                    <span class="guarantee-icon">💰</span>
+                    <h3>ROI Promise</h3>
+                    <p>If your audit doesn't identify at least $10k in potential savings/revenue within 90 days, I'll refund 50% of the fee.</p>
+                </div>
+                
+                <div class="guarantee-card fade-in">
+                    <span class="guarantee-icon">⚡</span>
+                    <h3>Speed Guarantee</h3>
+                    <p>All audits delivered within 5 business days or 10% discount applied automatically.</p>
+                </div>
+                
+                <div class="guarantee-card fade-in">
+                    <span class="guarantee-icon">📊</span>
+                    <h3>Success Metrics</h3>
+                    <p>Every project includes specific, measurable KPIs agreed upon upfront with regular progress reviews.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Payment Terms -->
+    <section class="payment-terms">
+        <div class="payment-container">
+            <div class="section-header fade-in">
+                <span class="section-badge">Payment</span>
+                <h2 class="section-title">Flexible Payment Terms</h2>
+            </div>
+            
+            <div class="payment-grid">
+                <div class="payment-item fade-in">
+                    <h3>Packages</h3>
+                    <p>50% upfront<br>50% on delivery</p>
+                </div>
+                
+                <div class="payment-item fade-in">
+                    <h3>Hourly Work</h3>
+                    <p>Weekly invoicing<br>Net 15 terms</p>
+                </div>
+                
+                <div class="payment-item fade-in">
+                    <h3>Retainers</h3>
+                    <p>Monthly billing<br>30-day notice</p>
+                </div>
+                
+                <div class="payment-item fade-in">
+                    <h3>Rush Projects</h3>
+                    <p>25% surcharge<br>< 5 day delivery</p>
+                </div>
+            </div>
+            
+            <p style="margin-top: 2rem; color: var(--color-accent); font-style: italic;">All prices in USD. International clients: pricing adjusted for local market conditions.</p>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq">
+        <div class="faq-container">
+            <div class="section-header fade-in">
+                <span class="section-badge">FAQ</span>
+                <h2 class="section-title">Frequently Asked Questions</h2>
+            </div>
+            
+            <div class="faq-item fade-in">
+                <button class="faq-question">
+                    How quickly can we get started?
+                    <span class="faq-toggle">+</span>
+                </button>
+                <div class="faq-answer">
+                    Most projects can begin within one week of our initial conversation. Strategy calls can be scheduled same-day, and urgent projects receive priority scheduling with expedited delivery options.
+                </div>
+            </div>
+            
+            <div class="faq-item fade-in">
+                <button class="faq-question">
+                    Do you work with international clients?
+                    <span class="faq-toggle">+</span>
+                </button>
+                <div class="faq-answer">
+                    Absolutely. My background managing digital campaigns across 30+ countries makes me particularly well-suited for international projects. I adjust pricing for local market conditions and work across time zones.
+                </div>
+            </div>
+            
+            <div class="faq-item fade-in">
+                <button class="faq-question">
+                    What if I'm not sure which service I need?
+                    <span class="faq-toggle">+</span>
+                </button>
+                <div class="faq-answer">
+                    That's perfectly normal. I recommend starting with a $150 strategy call where we'll diagnose your challenges and recommend the best approach. This fee is credited toward any larger project we decide to pursue.
+                </div>
+            </div>
+            
+            <div class="faq-item fade-in">
+                <button class="faq-question">
+                    Do you offer ongoing support after project completion?
+                    <span class="faq-toggle">+</span>
+                </button>
+                <div class="faq-answer">
+                    Yes. All packages include follow-up support, and I offer monthly retainer arrangements for ongoing optimization and strategic guidance. Most clients find the initial project leads to continued collaboration.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="cta-container fade-in">
+            <h2>Ready to Get Started?</h2>
+            <p>Let's discuss your biggest digital challenge and create a solution that drives real results.</p>
+            <a href="contact.html" class="btn-cta">Start the Conversation</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>Services</h3>
+                <a href="#packages">AI Strategy Audit</a>
+                <a href="#packages">Content Automation</a>
+                <a href="#packages">International Expansion</a>
+                <a href="#packages">Digital Transformation</a>
+            </div>
+            <div class="footer-section">
+                <h3>Company</h3>
+                <a href="about.html">About Me</a>
+                <a href="projects.html">Projects</a>
+                <a href="blog.html">Blog</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <div class="footer-section">
+                <h3>Connect</h3>
+                <a href="mailto:sanderstk@gmail.com">sanderstk@gmail.com</a>
+                <a href="https://linkedin.com/in/tremayne-sanders-bb68924/" target="_blank">LinkedIn</a>
+                <a href="tel:+1234567890">Schedule Call</a>
+            </div>
+            <div class="footer-section">
+                <h3>Location</h3>
+                <p>Fort Mill, South Carolina</p>
+                <p>Available for remote work worldwide</p>
+                <p>EST (UTC-5)</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Tremayne Sanders. All rights reserved.</p>
         </div>
     </footer>
+
+    <script>
+        // Pricing Toggle
+        const toggle = document.getElementById('pricingToggle');
+        const packagesSection = document.getElementById('packages');
+        const consultingSection = document.getElementById('consulting');
+
+        toggle.addEventListener('click', () => {
+            toggle.classList.toggle('active');
+            
+            if (toggle.classList.contains('active')) {
+                packagesSection.style.display = 'none';
+                consultingSection.style.display = 'block';
+            } else {
+                packagesSection.style.display = 'block';
+                consultingSection.style.display = 'none';
+            }
+        });
+
+        // FAQ Toggle
+        document.querySelectorAll('.faq-question').forEach(button => {
+            button.addEventListener('click', () => {
+                const faqItem = button.parentElement;
+                const isActive = faqItem.classList.contains('active');
+                
+                // Close all FAQ items
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+                
+                // Open clicked item if it wasn't active
+                if (!isActive) {
+                    faqItem.classList.add('active');
+                }
+            });
+        });
+
+        // Scroll Animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        document.querySelectorAll('.pricing-card').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Active Navigation Link
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            if (link.getAttribute('href') === 'pricing.html') {
+                link.classList.add('active');
+            }
+        });
+
+        // Smooth scrolling for internal links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Initialize pricing cards visibility
+        setTimeout(() => {
+            document.querySelectorAll('.pricing-card').forEach(card => {
+                card.classList.add('visible');
+            });
+        }, 500);
+    </script>
 </body>
-</html>">
-                            <h3>Strategy Call</h3>
-                            <div class="price">$150</div>
-                            <div class="duration">60 minutes</div>
-                            <ul>
-                                <li>Immediate problem diagnosis</li>
-                                <li>Quick win recommendations</li>
-                                <li>Project scoping & next steps</li>
-                                <li><em>Same-day booking available</em></li>
-                            </ul>
-                        </div>
-                        <div class="quick-start-item
+</html> {
+            padding: var(--spacing-xl) var(--spacing-md);
+            background: var(--color-light);
+        }
+
+        .quick-start-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .quick-start-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-lg);
+        }
+
+        .quick-start-card {
+            background: linear-gradient(135deg, var(--color-dark), var(--color-accent));
+            color: var(--color-light);
+            border-radius: var(--border-radius);
+            padding: var(--spacing-lg);
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .quick-start-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(250, 244, 252, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .quick-start-card:hover::before {
+            left: 100%;
+        }
+
+        .quick-start-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .quick-start-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .quick-start-card .price {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: var(--spacing-xs);
+            font-family: var(--font-mono);
+        }
+
+        .quick-start-card .duration {
+            color: var(--color-secondary);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .quick-start-card ul {
+            list-style: none;
+            text-align: left;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .quick-start
