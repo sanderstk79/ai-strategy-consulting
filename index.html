@@ -4,494 +4,753 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tremayne Sanders - AI Strategy Consultant</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --color-primary: #010101;
+            --color-secondary: #c3b9b7;
+            --color-accent: #816f7d;
+            --color-dark: #47294c;
+            --color-light: #faf4fc;
+            --font-primary: 'Inter', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+            --border-radius: 24px;
+            --border-radius-sm: 12px;
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 2rem;
+            --spacing-lg: 4rem;
+            --spacing-xl: 6rem;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        body {
-            font-family: 'Inter', 'Calibri', sans-serif;
-            line-height: 1.6;
-            color: #010101;
-            background: #faf4fc;
+        html {
+            scroll-behavior: smooth;
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
+        body {
+            font-family: var(--font-primary);
+            background: var(--color-light);
+            color: var(--color-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Cursor */
+        .cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            background: var(--color-accent);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transition: all 0.1s ease;
+            mix-blend-mode: difference;
         }
 
         /* Navigation */
-        nav {
-            background: #010101;
-            padding: 15px 0;
+        .nav {
             position: fixed;
-            width: 100%;
             top: 0;
+            left: 0;
+            right: 0;
             z-index: 1000;
-            box-shadow: 0 2px 20px rgba(1, 1, 1, 0.1);
+            padding: var(--spacing-sm) var(--spacing-md);
+            backdrop-filter: blur(20px);
+            background: rgba(250, 244, 252, 0.8);
+            border-bottom: 1px solid rgba(195, 185, 183, 0.2);
         }
 
         .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
         }
 
-        .logo {
-            font-size: 1.5rem;
+        .nav-logo {
+            font-size: 1.25rem;
             font-weight: 700;
-            color: #faf4fc;
+            color: var(--color-primary);
             text-decoration: none;
+            font-family: var(--font-mono);
         }
 
-        .nav-links {
+        .nav-menu {
             display: flex;
             list-style: none;
-            gap: 30px;
+            gap: var(--spacing-md);
         }
 
-        .nav-links a {
-            color: #c3b9b7;
+        .nav-menu a {
+            color: var(--color-accent);
             text-decoration: none;
-            font-weight: 400;
+            font-weight: 500;
+            font-size: 0.9rem;
+            letter-spacing: 0.02em;
+            position: relative;
             transition: color 0.3s ease;
         }
 
-        .nav-links a:hover {
-            color: #faf4fc;
+        .nav-menu a:hover {
+            color: var(--color-primary);
         }
 
-        .mobile-menu {
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--color-accent);
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        .nav-toggle {
             display: none;
-            flex-direction: column;
+            background: none;
+            border: none;
             cursor: pointer;
+            padding: 0.5rem;
         }
 
-        .mobile-menu span {
-            width: 25px;
-            height: 3px;
-            background: #faf4fc;
-            margin: 3px 0;
+        .nav-toggle span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--color-primary);
+            margin: 5px 0;
             transition: 0.3s;
         }
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, #47294c 0%, #816f7d 100%);
-            color: #faf4fc;
-            padding: 120px 0 80px;
-            text-align: center;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: var(--spacing-xl) var(--spacing-md);
             position: relative;
             overflow: hidden;
         }
 
-        .hero::before {
-            content: '';
-            position: absolute;
-            width: 200%;
-            height: 200%;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="%23faf4fc" opacity="0.05"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
-            animation: float 20s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(1deg); }
+        .hero-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: var(--spacing-xl);
+            align-items: center;
         }
 
         .hero-content {
-            position: relative;
             z-index: 2;
         }
 
-        .hero h1 {
-            font-size: 3.5rem;
+        .hero-badge {
+            display: inline-block;
+            background: rgba(129, 111, 125, 0.1);
+            border: 1px solid var(--color-accent);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin-bottom: var(--spacing-md);
+            color: var(--color-accent);
+            font-family: var(--font-mono);
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
             font-weight: 700;
-            margin-bottom: 20px;
-            opacity: 0;
-            animation: slideUp 0.8s ease-out forwards;
+            line-height: 1.1;
+            margin-bottom: var(--spacing-md);
+            background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
-        .hero .subtitle {
-            font-size: 1.4rem;
-            margin-bottom: 30px;
-            opacity: 0;
-            animation: slideUp 0.8s ease-out 0.2s forwards;
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--color-accent);
+            margin-bottom: var(--spacing-md);
+            font-weight: 400;
         }
 
-        .hero .description {
+        .hero-description {
             font-size: 1.1rem;
+            color: var(--color-accent);
+            margin-bottom: var(--spacing-lg);
             max-width: 600px;
-            margin: 0 auto 40px;
-            opacity: 0;
-            animation: slideUp 0.8s ease-out 0.4s forwards;
-            color: #c3b9b7;
+            line-height: 1.7;
         }
 
-        @keyframes slideUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .cta-buttons {
+        .hero-cta {
             display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-            opacity: 0;
-            animation: slideUp 0.8s ease-out 0.6s forwards;
+            gap: var(--spacing-sm);
+            align-items: center;
         }
 
         .btn {
-            padding: 15px 30px;
+            padding: 1rem 2rem;
             border: none;
-            border-radius: 8px;
+            border-radius: var(--border-radius-sm);
             font-weight: 600;
             text-decoration: none;
             transition: all 0.3s ease;
             cursor: pointer;
-            font-size: 1rem;
+            font-size: 0.95rem;
+            position: relative;
+            overflow: hidden;
         }
 
         .btn-primary {
-            background: #faf4fc;
-            color: #47294c;
+            background: var(--color-primary);
+            color: var(--color-light);
         }
 
-        .btn-primary:hover {
-            background: #c3b9b7;
-            transform: translateY(-2px);
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn-primary:hover::before {
+            left: 100%;
         }
 
         .btn-secondary {
             background: transparent;
-            color: #faf4fc;
-            border: 2px solid #faf4fc;
+            color: var(--color-primary);
+            border: 2px solid var(--color-primary);
         }
 
         .btn-secondary:hover {
-            background: #faf4fc;
-            color: #47294c;
+            background: var(--color-primary);
+            color: var(--color-light);
+        }
+
+        .hero-visual {
+            position: relative;
+            height: 400px;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--color-dark), var(--color-accent));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-visual::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="%23faf4fc" stroke-width="0.5" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .hero-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: var(--color-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--color-dark);
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Floating Elements */
+        .floating-element {
+            position: absolute;
+            pointer-events: none;
+            opacity: 0.6;
+        }
+
+        .floating-1 {
+            top: 20%;
+            right: 10%;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, var(--color-accent), var(--color-secondary));
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .floating-2 {
+            bottom: 30%;
+            left: 5%;
+            width: 40px;
+            height: 40px;
+            background: var(--color-dark);
+            border-radius: var(--border-radius-sm);
+            animation: float 8s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
         }
 
         /* Services Section */
         .services {
-            padding: 80px 0;
-            background: #faf4fc;
+            padding: var(--spacing-xl) var(--spacing-md);
+            background: var(--color-primary);
+            color: var(--color-light);
+        }
+
+        .services-container {
+            max-width: 1400px;
+            margin: 0 auto;
         }
 
         .section-header {
             text-align: center;
-            margin-bottom: 60px;
+            margin-bottom: var(--spacing-xl);
         }
 
-        .section-header h2 {
-            font-size: 2.5rem;
-            color: #010101;
-            margin-bottom: 20px;
+        .section-badge {
+            display: inline-block;
+            background: rgba(250, 244, 252, 0.1);
+            border: 1px solid var(--color-secondary);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin-bottom: var(--spacing-sm);
+            font-family: var(--font-mono);
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 5vw, 3rem);
             font-weight: 700;
+            margin-bottom: var(--spacing-sm);
         }
 
-        .section-header p {
+        .section-subtitle {
             font-size: 1.2rem;
-            color: #816f7d;
+            color: var(--color-secondary);
             max-width: 600px;
             margin: 0 auto;
         }
 
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-            margin-top: 60px;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: var(--spacing-md);
         }
 
         .service-card {
-            background: white;
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(1, 1, 1, 0.1);
+            background: rgba(250, 244, 252, 0.05);
+            border: 1px solid rgba(250, 244, 252, 0.1);
+            border-radius: var(--border-radius);
+            padding: var(--spacing-lg);
             transition: all 0.3s ease;
-            border: 1px solid #c3b9b7;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(250, 244, 252, 0.05), transparent);
+            transition: left 0.5s;
+        }
+
+        .service-card:hover::before {
+            left: 100%;
         }
 
         .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(71, 41, 76, 0.15);
+            transform: translateY(-8px);
+            border-color: var(--color-secondary);
         }
 
         .service-icon {
-            font-size: 3rem;
-            margin-bottom: 20px;
+            font-size: 2.5rem;
+            margin-bottom: var(--spacing-sm);
             display: block;
         }
 
-        .service-card h3 {
+        .service-title {
             font-size: 1.5rem;
-            color: #010101;
-            margin-bottom: 15px;
             font-weight: 600;
+            margin-bottom: var(--spacing-sm);
         }
 
-        .service-card p {
-            color: #816f7d;
-            margin-bottom: 20px;
+        .service-description {
+            color: var(--color-secondary);
+            margin-bottom: var(--spacing-sm);
+            line-height: 1.6;
         }
 
         .service-price {
             font-size: 1.8rem;
             font-weight: 700;
-            color: #47294c;
-            margin-bottom: 20px;
+            color: var(--color-light);
+            font-family: var(--font-mono);
         }
 
-        /* About Preview */
-        .about-preview {
-            padding: 80px 0;
-            background: linear-gradient(135deg, #c3b9b7 0%, #816f7d 100%);
-            color: #faf4fc;
+        /* About Section */
+        .about {
+            padding: var(--spacing-xl) var(--spacing-md);
+            background: var(--color-light);
         }
 
-        .about-content {
+        .about-container {
+            max-width: 1400px;
+            margin: 0 auto;
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 60px;
+            gap: var(--spacing-xl);
             align-items: center;
         }
 
-        .about-text h2 {
-            font-size: 2.5rem;
-            margin-bottom: 30px;
+        .about-visual {
+            position: relative;
+            height: 500px;
+            border-radius: var(--border-radius);
+            background: linear-gradient(135deg, var(--color-secondary), var(--color-accent));
+            overflow: hidden;
+        }
+
+        .about-visual::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="dots" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="%23010101" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23dots)"/></svg>');
+        }
+
+        .about-content h2 {
+            font-size: clamp(2rem, 4vw, 2.5rem);
             font-weight: 700;
+            margin-bottom: var(--spacing-md);
+            color: var(--color-primary);
         }
 
-        .about-text p {
+        .about-content p {
+            color: var(--color-accent);
+            margin-bottom: var(--spacing-sm);
             font-size: 1.1rem;
-            margin-bottom: 20px;
-            line-height: 1.8;
+            line-height: 1.7;
         }
 
-        .stats {
+        .stats-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 30px;
-            margin-top: 40px;
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-lg);
         }
 
         .stat {
             text-align: center;
+            padding: var(--spacing-sm);
         }
 
         .stat-number {
             font-size: 2.5rem;
             font-weight: 700;
-            color: #faf4fc;
+            color: var(--color-primary);
+            font-family: var(--font-mono);
         }
 
         .stat-label {
-            color: #c3b9b7;
+            color: var(--color-accent);
             font-size: 0.9rem;
+            font-weight: 500;
         }
 
         /* CTA Section */
-        .cta-section {
-            padding: 80px 0;
-            background: #010101;
-            color: #faf4fc;
+        .cta {
+            padding: var(--spacing-xl) var(--spacing-md);
+            background: linear-gradient(135deg, var(--color-dark), var(--color-accent));
+            color: var(--color-light);
             text-align: center;
         }
 
-        .cta-section h2 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            font-weight: 700;
+        .cta-container {
+            max-width: 800px;
+            margin: 0 auto;
         }
 
-        .cta-section p {
+        .cta h2 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 700;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .cta p {
             font-size: 1.2rem;
-            margin-bottom: 40px;
-            color: #c3b9b7;
+            color: var(--color-secondary);
+            margin-bottom: var(--spacing-lg);
         }
 
         /* Footer */
-        footer {
-            background: #47294c;
-            color: #c3b9b7;
-            padding: 40px 0;
-            text-align: center;
+        .footer {
+            background: var(--color-primary);
+            color: var(--color-secondary);
+            padding: var(--spacing-lg) var(--spacing-md) var(--spacing-md);
         }
 
-        .footer-content {
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-bottom: 30px;
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-md);
         }
 
         .footer-section h3 {
-            color: #faf4fc;
-            margin-bottom: 20px;
+            color: var(--color-light);
+            margin-bottom: var(--spacing-sm);
             font-weight: 600;
         }
 
         .footer-section a {
-            color: #c3b9b7;
+            color: var(--color-secondary);
             text-decoration: none;
             transition: color 0.3s ease;
+            display: block;
+            margin-bottom: 0.5rem;
         }
 
         .footer-section a:hover {
-            color: #faf4fc;
+            color: var(--color-light);
         }
 
         .footer-bottom {
-            border-top: 1px solid #816f7d;
-            padding-top: 30px;
-            margin-top: 30px;
+            border-top: 1px solid var(--color-accent);
+            padding-top: var(--spacing-md);
+            text-align: center;
+            color: var(--color-secondary);
         }
 
-        /* Mobile Responsive */
+        /* Responsive Design */
         @media (max-width: 768px) {
-            .nav-links {
+            .nav-menu {
                 display: none;
             }
 
-            .mobile-menu {
-                display: flex;
+            .nav-toggle {
+                display: block;
             }
 
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero .subtitle {
-                font-size: 1.2rem;
-            }
-
-            .cta-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .about-content {
+            .hero-container {
                 grid-template-columns: 1fr;
+                gap: var(--spacing-md);
                 text-align: center;
             }
 
-            .stats {
-                grid-template-columns: repeat(4, 1fr);
+            .hero-visual {
+                order: -1;
+                height: 300px;
             }
 
-            .section-header h2 {
-                font-size: 2rem;
+            .about-container {
+                grid-template-columns: 1fr;
+                gap: var(--spacing-md);
+            }
+
+            .about-visual {
+                order: -1;
+                height: 300px;
             }
 
             .services-grid {
                 grid-template-columns: 1fr;
             }
+
+            .stats-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+
+            .hero-cta {
+                flex-direction: column;
+                align-items: stretch;
+            }
         }
 
         @media (max-width: 480px) {
-            .hero {
-                padding: 100px 0 60px;
-            }
-
-            .stats {
+            .stats-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
+        }
 
-            .service-card {
-                padding: 30px;
-            }
+        /* Scroll Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Loading Animation */
+        .loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--color-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            transition: opacity 0.5s ease;
+        }
+
+        .loading.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loader {
+            width: 60px;
+            height: 60px;
+            border: 3px solid var(--color-secondary);
+            border-top: 3px solid var(--color-primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
     </style>
 </head>
 <body>
-    <nav>
+    <!-- Loading Screen -->
+    <div class="loading">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+
+    <!-- Navigation -->
+    <nav class="nav">
         <div class="nav-container">
-            <a href="index.html" class="logo">Tremayne Sanders</a>
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="projects.html">Projects</a></li>
-                <li><a href="pricing.html">Pricing</a></li>
-                <li><a href="blog.html">Blog</a></li>
-                <li><a href="contact.html">Contact</a></li>
+            <a href="#home" class="nav-logo">TS.</a>
+            <ul class="nav-menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#blog">Blog</a></li>
+                <li><a href="#contact">Contact</a></li>
             </ul>
-            <div class="mobile-menu">
+            <button class="nav-toggle">
                 <span></span>
                 <span></span>
                 <span></span>
-            </div>
+            </button>
         </div>
     </nav>
 
-    <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <h1>AI Strategy Consultant</h1>
-                <p class="subtitle">Automating Content & Campaigns for Global Scale</p>
-                <p class="description">I help companies eliminate content creation bottlenecks and scale their digital presence internationally using AI-powered automation tools.</p>
-                <div class="cta-buttons">
-                    <a href="pricing.html" class="btn btn-primary">View Services</a>
-                    <a href="contact.html" class="btn btn-secondary">Let's Talk</a>
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="floating-element floating-1"></div>
+        <div class="floating-element floating-2"></div>
+        
+        <div class="hero-container">
+            <div class="hero-content fade-in">
+                <span class="hero-badge">Available for Projects</span>
+                <h1 class="hero-title">AI Strategy Consultant</h1>
+                <p class="hero-subtitle">Automating Content & Campaigns for Global Scale</p>
+                <p class="hero-description">
+                    I help companies eliminate content creation bottlenecks and scale their digital presence internationally using AI-powered automation tools. From diplomatic campaigns across 30+ countries to startup growth strategies.
+                </p>
+                <div class="hero-cta">
+                    <a href="#contact" class="btn btn-primary">Start Your Project</a>
+                    <a href="#services" class="btn btn-secondary">View Services</a>
                 </div>
+            </div>
+            <div class="hero-visual fade-in">
+                <div class="hero-avatar">TS</div>
             </div>
         </div>
     </section>
 
-    <section class="services">
-        <div class="container">
-            <div class="section-header">
-                <h2>Transform Your Digital Operations</h2>
-                <p>From strategy to implementation, I deliver AI-powered solutions that drive real results</p>
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="services-container">
+            <div class="section-header fade-in">
+                <span class="section-badge">Services</span>
+                <h2 class="section-title">Transform Your Digital Operations</h2>
+                <p class="section-subtitle">From strategy to implementation, I deliver AI-powered solutions that drive real results</p>
             </div>
+            
             <div class="services-grid">
-                <div class="service-card">
+                <div class="service-card fade-in">
                     <span class="service-icon">🚀</span>
-                    <h3>AI Strategy Audit</h3>
-                    <p>Complete analysis of your digital operations with automation opportunities and 90-day roadmap.</p>
+                    <h3 class="service-title">AI Strategy Audit</h3>
+                    <p class="service-description">Complete analysis of your digital operations with automation opportunities and 90-day roadmap.</p>
                     <div class="service-price">$2,500</div>
-                    <a href="pricing.html" class="btn btn-primary">Learn More</a>
                 </div>
-                <div class="service-card">
+                
+                <div class="service-card fade-in">
                     <span class="service-icon">⚡</span>
-                    <h3>Content Automation</h3>
-                    <p>Custom AI systems that generate content, optimize campaigns, and automate social media workflows.</p>
+                    <h3 class="service-title">Content Automation</h3>
+                    <p class="service-description">Custom AI systems that generate content, optimize campaigns, and automate social media workflows.</p>
                     <div class="service-price">$7,500</div>
-                    <a href="pricing.html" class="btn btn-primary">Learn More</a>
                 </div>
-                <div class="service-card">
+                
+                <div class="service-card fade-in">
                     <span class="service-icon">🌍</span>
-                    <h3>International Expansion</h3>
-                    <p>Multi-market content localization and cross-cultural campaign frameworks for global scaling.</p>
+                    <h3 class="service-title">International Expansion</h3>
+                    <p class="service-description">Multi-market content localization and cross-cultural campaign frameworks for global scaling.</p>
                     <div class="service-price">$12,500</div>
-                    <a href="pricing.html" class="btn btn-primary">Learn More</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="about-preview">
-        <div class="container">
-            <div class="about-content">
-                <div class="about-text">
-                    <h2>From Digital Diplomacy to AI Innovation</h2>
-                    <p>I've managed digital campaigns across 30+ countries for the British Foreign & Commonwealth Office, trained ambassadors on digital strategy, and now I'm building AI automation tools for the next generation of businesses.</p>
-                    <p>My unique combination of international experience and AI expertise helps companies navigate complex digital transformations while scaling globally.</p>
-                    <a href="about.html" class="btn btn-primary">My Story</a>
-                </div>
-                <div class="stats">
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="about-container">
+            <div class="about-visual fade-in"></div>
+            <div class="about-content fade-in">
+                <span class="section-badge">About Me</span>
+                <h2>From Digital Diplomacy to AI Innovation</h2>
+                <p>I've managed digital campaigns across 30+ countries for the British Foreign & Commonwealth Office, trained ambassadors on digital strategy, and now I'm building AI automation tools for the next generation of businesses.</p>
+                <p>My unique combination of international experience and AI expertise helps companies navigate complex digital transformations while scaling globally.</p>
+                <p>Currently developing an AI-powered content automation platform for f/EVO, designed specifically for fractional executives who need to maintain strong personal brands while focusing on client work.</p>
+                
+                <div class="stats-grid">
                     <div class="stat">
                         <div class="stat-number">30+</div>
                         <div class="stat-label">Countries Managed</div>
@@ -513,40 +772,202 @@
         </div>
     </section>
 
-    <section class="cta-section">
-        <div class="container">
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="cta-container fade-in">
             <h2>Ready to Transform Your Digital Operations?</h2>
             <p>Let's discuss how AI automation can eliminate your content bottlenecks and scale your business globally.</p>
-            <a href="contact.html" class="btn btn-primary">Start the Conversation</a>
+            <a href="#contact" class="btn btn-primary">Start the Conversation</a>
         </div>
     </section>
 
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>Services</h3>
-                    <p><a href="pricing.html">AI Strategy Audit</a></p>
-                    <p><a href="pricing.html">Content Automation</a></p>
-                    <p><a href="pricing.html">International Expansion</a></p>
-                </div>
-                <div class="footer-section">
-                    <h3>About</h3>
-                    <p><a href="about.html">My Background</a></p>
-                    <p><a href="projects.html">Recent Projects</a></p>
-                    <p><a href="blog.html">Insights & Articles</a></p>
-                </div>
-                <div class="footer-section">
-                    <h3>Connect</h3>
-                    <p><a href="mailto:sanderstk@gmail.com">sanderstk@gmail.com</a></p>
-                    <p><a href="https://linkedin.com/in/tremayne-sanders-bb68924/" target="_blank">LinkedIn</a></p>
-                    <p><a href="contact.html">Contact Form</a></p>
-                </div>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>Services</h3>
+                <a href="#services">AI Strategy Audit</a>
+                <a href="#services">Content Automation</a>
+                <a href="#services">International Expansion</a>
+                <a href="#services">Digital Transformation</a>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 Tremayne Sanders. All rights reserved.</p>
+            <div class="footer-section">
+                <h3>Company</h3>
+                <a href="#about">About Me</a>
+                <a href="#projects">Projects</a>
+                <a href="#blog">Blog</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="footer-section">
+                <h3>Connect</h3>
+                <a href="mailto:sanderstk@gmail.com">sanderstk@gmail.com</a>
+                <a href="https://linkedin.com/in/tremayne-sanders-bb68924/" target="_blank">LinkedIn</a>
+                <a href="tel:+1234567890">Schedule Call</a>
+            </div>
+            <div class="footer-section">
+                <h3>Location</h3>
+                <p>Fort Mill, South Carolina</p>
+                <p>Available for remote work worldwide</p>
+                <p>EST (UTC-5)</p>
             </div>
         </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Tremayne Sanders. All rights reserved.</p>
+        </div>
     </footer>
+
+    <script>
+        // Loading Screen
+        window.addEventListener('load', () => {
+            const loading = document.querySelector('.loading');
+            setTimeout(() => {
+                loading.classList.add('hidden');
+            }, 1000);
+        });
+
+        // Custom Cursor
+        const cursor = document.querySelector('.cursor');
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        // Smooth Scrolling for Navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Scroll Animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Mobile Navigation Toggle
+        const navToggle = document.querySelector('.nav-toggle');
+        const navMenu = document.querySelector('.nav-menu');
+
+        navToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            navToggle.classList.toggle('active');
+        });
+
+        // Active Navigation Link
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.nav-menu a[href^="#"]');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Parallax Effect for Floating Elements
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallax1 = document.querySelector('.floating-1');
+            const parallax2 = document.querySelector('.floating-2');
+            
+            if (parallax1) {
+                parallax1.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+            if (parallax2) {
+                parallax2.style.transform = `translateY(${scrolled * -0.3}px)`;
+            }
+        });
+
+        // Interactive Hover Effects
+        document.querySelectorAll('.service-card, .btn').forEach(element => {
+            element.addEventListener('mouseenter', () => {
+                cursor.style.transform = 'scale(1.5)';
+                cursor.style.backgroundColor = 'var(--color-dark)';
+            });
+            
+            element.addEventListener('mouseleave', () => {
+                cursor.style.transform = 'scale(1)';
+                cursor.style.backgroundColor = 'var(--color-accent)';
+            });
+        });
+
+        // Dynamic Background Gradient
+        let mouseX = 0;
+        let mouseY = 0;
+        
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX / window.innerWidth;
+            mouseY = e.clientY / window.innerHeight;
+            
+            const hero = document.querySelector('.hero');
+            if (hero) {
+                hero.style.background = `radial-gradient(circle at ${mouseX * 100}% ${mouseY * 100}%, var(--color-light) 0%, rgba(250, 244, 252, 0.8) 50%, var(--color-light) 100%)`;
+            }
+        });
+
+        // Typing Animation for Hero Title
+        const heroTitle = document.querySelector('.hero-title');
+        const titleText = heroTitle.textContent;
+        heroTitle.textContent = '';
+        
+        setTimeout(() => {
+            let index = 0;
+            const typeInterval = setInterval(() => {
+                heroTitle.textContent += titleText.charAt(index);
+                index++;
+                if (index >= titleText.length) {
+                    clearInterval(typeInterval);
+                }
+            }, 100);
+        }, 1500);
+
+        // Performance optimization for scroll events
+        let ticking = false;
+        
+        function updateOnScroll() {
+            // Your scroll-based animations here
+            ticking = false;
+        }
+        
+        function requestTick() {
+            if (!ticking) {
+                requestAnimationFrame(updateOnScroll);
+                ticking = true;
+            }
+        }
+        
+        window.addEventListener('scroll', requestTick);
+    </script>
 </body>
 </html>
