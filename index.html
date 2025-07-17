@@ -453,6 +453,67 @@
             box-shadow: 0 10px 25px rgba(71, 41, 76, 0.3);
         }
 
+        /* Consulting Services */
+        .consulting-section {
+            background: white;
+            padding: 60px 40px;
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(1, 1, 1, 0.1);
+            margin-bottom: 80px;
+        }
+
+        .consulting-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .consulting-card {
+            background: #faf4fc;
+            padding: 30px;
+            border-radius: 12px;
+            border: 2px solid #c3b9b7;
+            transition: all 0.3s ease;
+        }
+
+        .consulting-card:hover {
+            border-color: #47294c;
+            transform: translateY(-5px);
+        }
+
+        .consulting-card h3 {
+            font-size: 1.5rem;
+            color: #010101;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .consulting-card .price {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #47294c;
+            margin-bottom: 15px;
+        }
+
+        .consulting-card ul {
+            list-style: none;
+        }
+
+        .consulting-card li {
+            color: #816f7d;
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .consulting-card li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: #47294c;
+        }
+
         /* About Section */
         .about {
             padding: var(--spacing-xl) var(--spacing-md);
@@ -812,6 +873,47 @@
         </div>
     </section>
 
+    
+            <!-- Consulting Services -->
+            <section class="consulting-section">
+                <div class="section-header">
+                    <h2>⚡ Consulting Services</h2>
+                    <p>Flexible hourly and daily rates for ongoing support and strategic guidance</p>
+                </div>
+                <div class="consulting-grid">
+                    <div class="consulting-card">
+                        <h3>Strategic Consulting</h3>
+                        <div class="price">$175/hour</div>
+                        <ul>
+                            <li>AI strategy development</li>
+                            <li>Digital transformation planning</li>
+                            <li>Technology stack recommendations</li>
+                            <li>Team workshops & training</li>
+                        </ul>
+                    </div>
+                    <div class="consulting-card">
+                        <h3>Implementation Support</h3>
+                        <div class="price">$150/hour</div>
+                        <ul>
+                            <li>Technical guidance during rollouts</li>
+                            <li>Troubleshooting & optimization</li>
+                            <li>Staff training sessions</li>
+                            <li>Performance analysis</li>
+                        </ul>
+                    </div>
+                    <div class="consulting-card">
+                        <h3>Executive Advisory</h3>
+                        <div class="price">$1,200/day</div>
+                        <ul>
+                            <li>C-suite strategy sessions</li>
+                            <li>Board presentations</li>
+                            <li>Crisis digital response</li>
+                            <li>High-stakes campaign planning</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
     <!-- About Section -->
     <section id="about" class="about">
         <div class="about-container">
@@ -829,7 +931,7 @@
                         <div class="stat-label">Countries Managed</div>
                     </div>
                     <div class="stat">
-                        <div class="stat-number">7+</div>
+                        <div class="stat-number">11+</div>
                         <div class="stat-label">Years FCO Experience</div>
                     </div>
                     <div class="stat">
