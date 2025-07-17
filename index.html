@@ -10,282 +10,466 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Loading Screen -->
-    <div class="loading">
-        <div class="loader"></div>
-    </div>
-
-    <!-- Custom Cursor -->
     <div class="cursor"></div>
 
     <!-- Navigation -->
     <nav class="nav">
         <div class="nav-container">
-            <a href="#home" class="nav-logo">TS.</a>
-            <ul class="nav-menu">
+            <div class="logo">TS</div>
+            <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
                 <li><a href="#services">Services</a></li>
-                <li><a href="projects">Projects</a></li>
-                <li><a href="blog">Blog</a></li>
-                <li><a href="contact">Contact</a></li>
+                <li><a href="#blog">Blog</a></li>
+                <li><a href="#contact">Contact</a></li>
             </ul>
-            <button class="nav-toggle">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
         </div>
     </nav>
 
     <!-- Hero Section -->
     <section id="home" class="hero">
-        <div class="floating-element floating-1"></div>
-        <div class="floating-element floating-2"></div>
-        
+        <div class="floating-shapes">
+            <div class="shape"></div>
+            <div class="shape"></div>
+            <div class="shape"></div>
+        </div>
         <div class="hero-container">
-            <div class="hero-content fade-in">
-                <span class="hero-badge">Available for Projects</span>
-                <h1 class="hero-title">AI Strategy Consultant</h1>
-                <p class="hero-subtitle">Automating Content & Campaigns for Global Scale</p>
-                <p class="hero-description">
-                    I help companies eliminate content creation bottlenecks and scale their digital presence internationally using AI-powered automation tools. From diplomatic campaigns across 30+ countries to startup growth strategies.
-                </p>
-                <div class="hero-cta">
-                    <a href="#contact" class="btn btn-primary">Start Your Project</a>
-                    <a href="#services" class="btn btn-secondary">View Services</a>
+            <div class="hero-content">
+                <h1>I turn <span class="gradient-text">AI confusion</span> into competitive advantage</h1>
+                <p>Former government digital strategist now helping businesses navigate AI transformation. From blockchain platforms to automated content generation—I bridge the gap between AI possibility and business reality.</p>
+                
+                <div class="cta-buttons">
+                    <a href="#contact" class="btn btn-primary">Start Your AI Strategy</a>
+                    <a href="#projects" class="btn btn-secondary">View Case Studies</a>
+                </div>
+                
+                <div class="hero-stats">
+                    <div class="stat">
+                        <span class="stat-number">30+</span>
+                        <span class="stat-label">Countries Served</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">7+</span>
+                        <span class="stat-label">Years Strategy</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">3</span>
+                        <span class="stat-label">Companies Founded</span>
+                    </div>
                 </div>
             </div>
-            <div class="hero-visual fade-in">
-                <div class="hero-avatar">TS</div>
+            
+            <div class="hero-visual">
+                <div class="floating-card">
+                    <h3 style="margin-bottom: 1rem; color: var(--primary-color);">AI Strategy Workflow</h3>
+                    <div style="display: flex; flex-direction: column; gap: 1rem;">
+                        <div style="display: flex; align-items: center; gap: 1rem;">
+                            <div style="width: 12px; height: 12px; background: var(--success-color); border-radius: 50%;"></div>
+                            <span>Assess Current State</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 1rem;">
+                            <div style="width: 12px; height: 12px; background: var(--accent-color); border-radius: 50%;"></div>
+                            <span>Design AI Solutions</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 1rem;">
+                            <div style="width: 12px; height: 12px; background: var(--primary-color); border-radius: 50%;"></div>
+                            <span>Implement & Scale</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 class="section-title">The Strategic Mind Behind AI Transformation</h2>
+                <p class="section-subtitle">From managing digital strategy across 30 countries for the British Foreign Office to building AI-powered platforms for startups—I see patterns others miss.</p>
+            </div>
+            
+            <div class="about-grid">
+                <div class="about-image fade-in">
+                    <div class="about-card">
+                        <h3>Why I Get AI Strategy</h3>
+                        <p>Most consultants either understand technology OR business strategy. I've spent years in both worlds.</p>
+                        <p>Government taught me stakeholder management at scale. Startups taught me speed and scrappiness. Now I help companies navigate AI transformation without the usual corporate theater.</p>
+                        <div class="skills">
+                            <div class="skill-tag">Digital Diplomacy</div>
+                            <div class="skill-tag">Content Strategy</div>
+                            <div class="skill-tag">AI Implementation</div>
+                            <div class="skill-tag">Project Management</div>
+                            <div class="skill-tag">Data Analytics</div>
+                            <div class="skill-tag">Automation</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="about-content fade-in">
+                    <h3>The truth about AI strategy?</h3>
+                    <p>Everyone's talking about AI transformation, but most companies are stuck in pilot purgatory. They run proof-of-concepts that never scale, chase ChatGPT integrations that don't move the needle, and hire AI experts who can't translate tech into business outcomes.</p>
+                    
+                    <p>I'm different. I don't just understand the technology—I understand organizations. How they really work. How decisions actually get made. How to build consensus among stakeholders who speak different languages.</p>
+                    
+                    <p>My approach isn't about flashy demos or theoretical frameworks. It's about finding the AI applications that will genuinely transform your business, then building the organizational capability to execute them.</p>
+                    
+                    <p><strong>Current Focus:</strong> Building AI Automated Content Generation platform for f/EVO using n8n—turning complex workflows into simple, scalable systems that actually work.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 class="section-title">AI Strategy in Action</h2>
+                <p class="section-subtitle">Real projects, real results. Here's how I've helped organizations leverage AI to drive growth.</p>
+            </div>
+            
+            <div class="projects-grid">
+                <div class="project-card fade-in">
+                    <div class="project-image">🤖</div>
+                    <div class="project-content">
+                        <h3 class="project-title">AI Automated Content Generation Platform</h3>
+                        <p class="project-description">Building a comprehensive AI content automation platform for f/EVO using n8n. System handles content creation, optimization, and distribution across multiple channels with minimal human intervention.</p>
+                        
+                        <div class="project-tags">
+                            <span class="project-tag">n8n Automation</span>
+                            <span class="project-tag">Content Strategy</span>
+                            <span class="project-tag">AI Integration</span>
+                            <span class="project-tag">Workflow Design</span>
+                        </div>
+                        
+                        <div class="project-results">
+                            <strong>Impact:</strong> 80% reduction in content production time, automated multi-channel distribution, scalable content personalization framework
+                        </div>
+                        
+                        <a href="#contact" class="btn btn-primary">Discuss Similar Project</a>
+                    </div>
+                </div>
+                
+                <div class="project-card fade-in">
+                    <div class="project-image">🚀</div>
+                    <div class="project-content">
+                        <h3 class="project-title">IndieBred Digital Launch Strategy</h3>
+                        <p class="project-description">Comprehensive digital strategy for creative platform launch. Developed target audience segmentation, content marketing framework, and multi-channel campaign that drove user acquisition and engagement.</p>
+                        
+                        <div class="project-tags">
+                            <span class="project-tag">Digital Strategy</span>
+                            <span class="project-tag">Content Marketing</span>
+                            <span class="project-tag">Analytics</span>
+                            <span class="project-tag">Campaign Management</span>
+                        </div>
+                        
+                        <div class="project-results">
+                            <strong>Impact:</strong> Successful platform launch, targeted audience acquisition strategy, measurable engagement metrics, scalable growth framework
+                        </div>
+                        
+                        <a href="#contact" class="btn btn-primary">Launch Your Platform</a>
+                    </div>
+                </div>
+                
+                <div class="project-card fade-in">
+                    <div class="project-image">⛓️</div>
+                    <div class="project-content">
+                        <h3 class="project-title">Blockchain Intelligence Platform</h3>
+                        <p class="project-description">Led content strategy and UX design for MTLLSM blockchain project intelligence platform. Integrated complex data visualization with intuitive user experience for sophisticated financial analysis.</p>
+                        
+                        <div class="project-tags">
+                            <span class="project-tag">Blockchain</span>
+                            <span class="project-tag">UX Strategy</span>
+                            <span class="project-tag">Data Visualization</span>
+                            <span class="project-tag">Platform Design</span>
+                        </div>
+                        
+                        <div class="project-results">
+                            <strong>Impact:</strong> Streamlined complex data into actionable insights, improved user engagement, integrated marketing and communication tools
+                        </div>
+                        
+                        <a href="#contact" class="btn btn-primary">Build Your Platform</a>
+                    </div>
+                </div>
+                
+                <div class="project-card fade-in">
+                    <div class="project-image">🌍</div>
+                    <div class="project-content">
+                        <h3 class="project-title">Global Digital Diplomacy Framework</h3>
+                        <p class="project-description">Managed digital strategy across 30+ countries for British Foreign & Commonwealth Office. Developed scalable content management systems, analytics frameworks, and digital asset policies at international scale.</p>
+                        
+                        <div class="project-tags">
+                            <span class="project-tag">Digital Strategy</span>
+                            <span class="project-tag">Global Scale</span>
+                            <span class="project-tag">Policy Development</span>
+                            <span class="project-tag">Stakeholder Management</span>
+                        </div>
+                        
+                        <div class="project-results">
+                            <strong>Impact:</strong> Standardized digital operations across 30+ countries, improved content performance, enhanced international digital presence
+                        </div>
+                        
+                        <a href="#contact" class="btn btn-primary">Scale Globally</a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Services Section -->
     <section id="services" class="services">
-        <div class="services-container">
+        <div class="container">
             <div class="section-header fade-in">
-                <span class="section-badge">Services</span>
-                <h2 class="section-title">Transform Your Digital Operations</h2>
-                <p class="section-subtitle">From strategy to implementation, I deliver AI-powered solutions that drive real results</p>
+                <h2 class="section-title">AI Strategy Services</h2>
+                <p class="section-subtitle">From quick wins to comprehensive transformation. Choose the level of support that fits your timeline and goals.</p>
             </div>
             
             <div class="services-grid">
                 <div class="service-card fade-in">
-                    <span class="service-icon">🚀</span>
-                    <h3 class="service-title">AI Strategy Audit</h3>
-                    <p class="service-description">Complete analysis of your digital operations with automation opportunities and 90-day roadmap.</p>
-                    <div class="service-price">$2,500</div>
-                    <ul class="service-description">
-                        <li>Complete digital operations analysis</li>
-                        <li>AI automation opportunity mapping</li>
-                        <li>90-day implementation roadmap</li>
-                        <li>30-minute strategy presentation</li>
-                        <li>Follow-up consultation included</li>
+                    <div class="service-icon">🎯</div>
+                    <h3 class="service-title">AI Strategy Sprint</h3>
+                    <p class="service-description">Need clarity fast? 2-week intensive to identify your highest-impact AI opportunities and create an execution roadmap.</p>
+                    
+                    <div class="service-price">$8,500</div>
+                    <div class="service-period">2-week engagement</div>
+                    
+                    <ul class="service-features">
+                        <li>Current state assessment</li>
+                        <li>AI opportunity mapping</li>
+                        <li>Implementation roadmap</li>
+                        <li>ROI projections</li>
+                        <li>Technology recommendations</li>
+                        <li>Quick-win identification</li>
                     </ul>
-                    <a href="mailto:sanderstk@gmail.com?subject=AI Digital Strategy Audit" class="cta-button">Get Your Audit</a>
+                    
+                    <a href="#contact" class="btn btn-primary">Start Sprint</a>
                 </div>
                 
                 <div class="service-card fade-in">
-                    <span class="service-icon">⚡</span>
-                    <h3 class="service-title">Content Automation</h3>
-                    <p class="service-description">Custom AI systems that generate content, optimize campaigns, and automate social media workflows.</p>
-                    <div class="service-price">$7,500</div>
-                    <ul class="service-description">
-                        <li>Custom AI content generation system</li>
-                        <li>Social media automation workflow</li>
-                        <li>Campaign optimization tools</li>
+                    <div class="service-icon">🚀</div>
+                    <h3 class="service-title">AI Implementation Project</h3>
+                    <p class="service-description">Ready to build? End-to-end AI solution development with hands-on implementation and team training.</p>
+                    
+                    <div class="service-price">$25,000</div>
+                    <div class="service-period">8-12 week project</div>
+                    
+                    <ul class="service-features">
+                        <li>Custom AI solution development</li>
+                        <li>Technical implementation</li>
+                        <li>Process automation design</li>
                         <li>Team training & handoff</li>
-                        <li>30-day support included</li>
+                        <li>Performance monitoring setup</li>
+                        <li>Ongoing optimization plan</li>
                     </ul>
-                    <a href="mailto:sanderstk@gmail.com?subject=Content Automation Setup" class="cta-button">Start Automating</a> 
+                    
+                    <a href="#contact" class="btn btn-primary">Launch Project</a>
                 </div>
                 
                 <div class="service-card fade-in">
-                    <span class="service-icon">🌍</span>
-                    <h3 class="service-title">International Expansion</h3>
-                    <p class="service-description">Multi-market content localization and cross-cultural campaign frameworks for global scaling.</p>
+                    <div class="service-icon">🔄</div>
+                    <h3 class="service-title">AI Strategy Partner</h3>
+                    <p class="service-description">Your dedicated AI strategist. Monthly retainer for ongoing strategy, implementation support, and optimization.</p>
+                    
                     <div class="service-price">$12,500</div>
-                    <ul class="service-description">
-                        <li>Multi-market content localization system</li>
-                        <li>Cross-cultural campaign framework</li>
-                        <li>Regional automation workflows</li>
-                        <li>Performance tracking dashboard</li>
-                        <li>Quarterly strategy review</li>
+                    <div class="service-period">per month</div>
+                    
+                    <ul class="service-features">
+                        <li>Strategic planning & guidance</li>
+                        <li>Implementation oversight</li>
+                        <li>Performance optimization</li>
+                        <li>Technology evaluation</li>
+                        <li>Team development</li>
+                        <li>Competitive intelligence</li>
                     </ul>
-                    <a href="mailto:sanderstk@gmail.com?subject=International Expansion Strategy" class="cta-button">Go Global</a>       
+                    
+                    <a href="#contact" class="btn btn-primary">Partner With Me</a>
                 </div>
                 
                 <div class="service-card fade-in">
-                    <span class="service-icon">🏆</span>
-                    <h3 class="service-title">International Expansion</h3>
-                    <p class="service-description">Multi-market content localization and cross-cultural campaign frameworks for global scaling.</p>
-                    <div class="service-price">$12,500</div>
-                    <ul class="service-description">
-                        <li>Complete AI-powered digital ecosystem</li>
-                        <li>Advanced automation workflows</li>
-                        <li>International scaling infrastructure</li>
-                        <li>Team training & change management</li>
-                        <li>90-day optimization period</li>
+                    <div class="service-icon">⚡</div>
+                    <h3 class="service-title">AI Advisory Sessions</h3>
+                    <p class="service-description">Quick expert guidance when you need it. Hourly consulting for specific challenges and strategic decisions.</p>
+                    
+                    <div class="service-price">$350</div>
+                    <div class="service-period">per hour</div>
+                    
+                    <ul class="service-features">
+                        <li>Strategic consultation</li>
+                        <li>Technical guidance</li>
+                        <li>Problem-solving sessions</li>
+                        <li>Technology evaluation</li>
+                        <li>Implementation planning</li>
+                        <li>Performance review</li>
                     </ul>
-                    <a href="mailto:sanderstk@gmail.com?subject=Full Digital Transformation" class="cta-button">Transform Now</a>                    
-                </div>
-                
-                <p class="section-subtitle"> </p>
-                <p class="section-subtitle"> </p>
-            </div>
-     
-                
-                    <div class="section-header fade-in">
-                        <span class="section-badge">Consulting Services</span>
-                        <p class="section-subtitle">Flexible hourly and daily rates for ongoing support and strategic guidance</p>
-                    </div>
-            
-            
-        
-                <div class="services-grid">
-                    <div class="service-card fade-in">
-                        <h3>Strategic Consulting</h3>
-                        <div class="service-price">$175/hour</div>
-                        <ul class="service-description">
-                            <li>AI strategy development</li>
-                            <li>Digital transformation planning</li>
-                            <li>Technology stack recommendations</li>
-                            <li>Team workshops & training</li>
-                        </ul>
-                    </div>
-                    <div class="service-card fade-in">
-                        <h3>Implementation Support</h3>
-                        <div class="service-price">$150/hour</div>
-                        <ul class="service-description">
-                            <li>Technical guidance during rollouts</li>
-                            <li>Troubleshooting & optimization</li>
-                            <li>Staff training sessions</li>
-                            <li>Performance analysis</li>
-                        </ul>
-                    </div>
-                    <div class="service-card fade-in">
-                        <h3>Rapid Assessment</h3>
-                        <div class="service-price">$750</div>
-                        <ul class="service-description">
-                            <li>3 hour session</li>
-                            <li>Current state analysis</li>
-                            <li>Priority recommendations</li>
-                            <li>Implementation timeline</li>
-                            <li>Perfect for urgent decisions</li>
-                        </ul>
-                    </div>   
-                    <div class="service-card fade-in">
-                        <h3>Executive Advisory</h3>
-                        <div class="service-price">$1,200/day</div>
-                        <ul class="service-description">
-                            <li>C-suite strategy sessions</li>
-                            <li>Board presentations</li>
-                            <li>Crisis digital response</li>
-                            <li>High-stakes campaign planning</li>
-                        </ul>
-                    </div>
+                    
+                    <a href="#contact" class="btn btn-primary">Book Session</a>
                 </div>
             </div>
-    </section>
-
-    
-           
-    <!-- About Section -->
-    <section id="about" class="about">
-        <div class="about-container">
-            <div class="about-visual fade-in"></div>
-            <div class="about-content fade-in">
-                <span class="section-badge">About Me</span>
-                <h2>From Digital Diplomacy to AI Innovation</h2>
-                <p>I've managed digital campaigns across 30+ countries for the British Foreign & Commonwealth Office, trained ambassadors on digital strategy, and now I'm building AI automation tools for the next generation of businesses.</p>
-                <p>My unique combination of international experience and AI expertise helps companies navigate complex digital transformations while scaling globally.</p>
-                <p>Currently developing an AI-powered content automation platform for f/EVO, designed specifically for fractional executives who need to maintain strong personal brands while focusing on client work.</p>
-                
-                <div class="stats-grid">
-                    <div class="stat">
-                        <div class="stat-number">30+</div>
-                        <div class="stat-label">Countries Managed</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-number">11+</div>
-                        <div class="stat-label">Years FCO Experience</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-number">100+</div>
-                        <div class="stat-label">Executives Trained</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-number">IBM</div>
-                        <div class="stat-label">AI Certified</div>
-                    </div>
-                </div>
+            
+            <div style="text-align: center; margin-top: 4rem;" class="fade-in">
+                <p style="font-size: 1.1rem; color: var(--text-light); margin-bottom: 2rem;">
+                    <strong>Goal:</strong> Help you reach $100K+ in AI-driven value this year.<br>
+                    <strong>Approach:</strong> Start with quick wins, scale what works, kill what doesn't.
+                </p>
+                <a href="#contact" class="btn btn-secondary">Let's Discuss Your Goals</a>
             </div>
         </div>
     </section>
 
-    <!-- CTA Section -->
-    <section class="cta">
-        <div class="cta-container fade-in">
-            <h2>Ready to Transform Your Digital Operations?</h2>
-            <p>Let's discuss how AI automation can eliminate your content bottlenecks and scale your business globally.</p>
-            <a href="#contact" class="btn btn-primary">Start the Conversation</a>
+    <!-- Blog Section -->
+    <section id="blog" class="blog">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 class="section-title">AI Strategy Insights</h2>
+                <p class="section-subtitle">Practical thoughts on AI implementation, strategy, and what actually works in the real world.</p>
+            </div>
+            
+            <div class="blog-grid">
+                <article class="blog-card fade-in">
+                    <div class="blog-image">📊</div>
+                    <div class="blog-content">
+                        <div class="blog-date">Coming Soon</div>
+                        <h3 class="blog-title">Why Most AI Pilots Never Scale (And How to Fix It)</h3>
+                        <p class="blog-excerpt">The uncomfortable truth about why 80% of AI projects stay stuck in proof-of-concept hell—and the three changes that actually move them to production.</p>
+                    </div>
+                </article>
+                
+                <article class="blog-card fade-in">
+                    <div class="blog-image">🎯</div>
+                    <div class="blog-content">
+                        <div class="blog-date">Coming Soon</div>
+                        <h3 class="blog-title">The Government-to-Startup AI Playbook</h3>
+                        <p class="blog-excerpt">What 7 years in digital diplomacy taught me about implementing AI at scale. Lessons from managing strategy across 30 countries.</p>
+                    </div>
+                </article>
+                
+                <article class="blog-card fade-in">
+                    <div class="blog-image">🤖</div>
+                    <div class="blog-content">
+                        <div class="blog-date">Coming Soon</div>
+                        <h3 class="blog-title">Building AI Content Systems That Actually Work</h3>
+                        <p class="blog-excerpt">Inside the f/EVO automation platform: how we built content generation that scales without losing quality or brand voice.</p>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 class="section-title">Ready to Transform Your AI Strategy?</h2>
+                <p class="section-subtitle">Let's discuss how AI can drive real results for your business. No corporate theater, just practical solutions.</p>
+            </div>
+            
+            <div class="contact-grid">
+                <div class="contact-info fade-in">
+                    <div class="contact-item">
+                        <div class="contact-icon">📧</div>
+                        <div>
+                            <h4>Email</h4>
+                            <p>sanderstk@gmail.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">💼</div>
+                        <div>
+                            <h4>LinkedIn</h4>
+                            <p>linkedin.com/in/tremayne-sanders-bb68924/</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">⚡</div>
+                        <div>
+                            <h4>Response Time</h4>
+                            <p>Within 24 hours</p>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 3rem;">
+                        <h4 style="margin-bottom: 1rem;">What to expect:</h4>
+                        <ul style="list-style: none; color: var(--text-light);">
+                            <li style="margin-bottom: 0.5rem;">✓ 30-minute discovery call</li>
+                            <li style="margin-bottom: 0.5rem;">✓ Honest assessment of fit</li>
+                            <li style="margin-bottom: 0.5rem;">✓ Clear next steps</li>
+                            <li style="margin-bottom: 0.5rem;">✓ No sales pitches</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="contact-form fade-in">
+                    <h3 style="margin-bottom: 2rem; color: var(--text-dark);">Start the Conversation</h3>
+                    <form>
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="company">Company</label>
+                            <input type="text" id="company" name="company">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="challenge">What's your biggest AI challenge right now?</label>
+                            <textarea id="challenge" name="challenge" rows="4" placeholder="Tell me about your current situation, goals, or specific challenges you're facing with AI implementation..."></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
+                    </form>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-section">
-                <h3>Services</h3>
-                <a href="#services">AI Strategy Audit</a>
-                <a href="#services">Content Automation</a>
-                <a href="#services">International Expansion</a>
-                <a href="#services">Digital Transformation</a>
-            </div>
-            <div class="footer-section">
-                <h3>Company</h3>
-                <a href="#about">About Me</a>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
                 <a href="#projects">Projects</a>
+                <a href="#services">Services</a>
                 <a href="#blog">Blog</a>
                 <a href="#contact">Contact</a>
             </div>
-            <div class="footer-section">
-                <h3>Connect</h3>
-                <a href="mailto:sanderstk@gmail.com">sanderstk@gmail.com</a>
-                <a href="https://linkedin.com/in/tremayne-sanders-bb68924/" target="_blank">LinkedIn</a>
-                <a href="tel:+1234567890">Schedule Call</a>
-            </div>
-            <div class="footer-section">
-                <h3>Location</h3>
-                <p>Fort Mill, South Carolina</p>
-                <p>Available for remote work worldwide</p>
-                <p>EST (UTC-5)</p>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2025 Tremayne Sanders. All rights reserved.</p>
+            <p>&copy; 2025 Tremayne Sanders. AI Strategy Consultant.</p>
+            <p style="color: var(--text-light); font-size: 0.9rem; margin-top: 1rem;">
+                Turning AI confusion into competitive advantage, one strategy at a time.
+            </p>
         </div>
     </footer>
 
     <script>
-        // Loading Screen
-        window.addEventListener('load', () => {
-            const loading = document.querySelector('.loading');
-            setTimeout(() => {
-                loading.classList.add('hidden');
-            }, 1000);
-        });
-
-        // Custom Cursor
+        // Custom cursor
         const cursor = document.querySelector('.cursor');
+        const links = document.querySelectorAll('a, button, .project-card, .service-card, .blog-card');
+
         document.addEventListener('mousemove', (e) => {
             cursor.style.left = e.clientX + 'px';
             cursor.style.top = e.clientY + 'px';
         });
 
-        // Smooth Scrolling for Navigation
+        links.forEach(link => {
+            link.addEventListener('mouseenter', () => {
+                cursor.classList.add('hover');
+            });
+            
+            link.addEventListener('mouseleave', () => {
+                cursor.classList.remove('hover');
+            });
+        });
+
+        // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -299,7 +483,7 @@
             });
         });
 
-        // Scroll Animations
+        // Scroll animations
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
@@ -317,110 +501,32 @@
             observer.observe(el);
         });
 
-        // Mobile Navigation Toggle
-        const navToggle = document.querySelector('.nav-toggle');
-        const navMenu = document.querySelector('.nav-menu');
-
-        navToggle.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-            navToggle.classList.toggle('active');
-        });
-
-        // Active Navigation Link
-        const sections = document.querySelectorAll('section[id]');
-        const navLinks = document.querySelectorAll('.nav-menu a[href^="#"]');
-
+        // Navigation background on scroll
         window.addEventListener('scroll', () => {
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                if (scrollY >= (sectionTop - 200)) {
-                    current = section.getAttribute('id');
-                }
-            });
-
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === `#${current}`) {
-                    link.classList.add('active');
-                }
-            });
-        });
-
-        // Parallax Effect for Floating Elements
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const parallax1 = document.querySelector('.floating-1');
-            const parallax2 = document.querySelector('.floating-2');
-            
-            if (parallax1) {
-                parallax1.style.transform = `translateY(${scrolled * 0.5}px)`;
-            }
-            if (parallax2) {
-                parallax2.style.transform = `translateY(${scrolled * -0.3}px)`;
+            const nav = document.querySelector('.nav');
+            if (window.scrollY > 100) {
+                nav.style.background = 'rgba(255, 255, 255, 0.98)';
+                nav.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                nav.style.background = 'rgba(255, 255, 255, 0.95)';
+                nav.style.boxShadow = 'none';
             }
         });
 
-        // Interactive Hover Effects
-        document.querySelectorAll('.service-card, .btn').forEach(element => {
-            element.addEventListener('mouseenter', () => {
-                cursor.style.transform = 'scale(1.5)';
-                cursor.style.backgroundColor = 'var(--color-dark)';
-            });
-            
-            element.addEventListener('mouseleave', () => {
-                cursor.style.transform = 'scale(1)';
-                cursor.style.backgroundColor = 'var(--color-accent)';
-            });
+        // Form submission
+        document.querySelector('form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Thank you for your message! I\'ll get back to you within 24 hours.');
         });
 
-        // Dynamic Background Gradient
-        let mouseX = 0;
-        let mouseY = 0;
-        
-        document.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX / window.innerWidth;
-            mouseY = e.clientY / window.innerHeight;
-            
-            const hero = document.querySelector('.hero');
-            if (hero) {
-                hero.style.background = `radial-gradient(circle at ${mouseX * 100}% ${mouseY * 100}%, var(--color-light) 0%, rgba(250, 244, 252, 0.8) 50%, var(--color-light) 100%)`;
-            }
+        // Dynamic project cards interaction
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.addEventListener('click', () => {
+                // Could integrate with modal or detailed view
+                const contactSection = document.querySelector('#contact');
+                contactSection.scrollIntoView({ behavior: 'smooth' });
+            });
         });
-
-        // Typing Animation for Hero Title
-        const heroTitle = document.querySelector('.hero-title');
-        const titleText = heroTitle.textContent;
-        heroTitle.textContent = '';
-        
-        setTimeout(() => {
-            let index = 0;
-            const typeInterval = setInterval(() => {
-                heroTitle.textContent += titleText.charAt(index);
-                index++;
-                if (index >= titleText.length) {
-                    clearInterval(typeInterval);
-                }
-            }, 100);
-        }, 1500);
-
-        // Performance optimization for scroll events
-        let ticking = false;
-        
-        function updateOnScroll() {
-            // Your scroll-based animations here
-            ticking = false;
-        }
-        
-        function requestTick() {
-            if (!ticking) {
-                requestAnimationFrame(updateOnScroll);
-                ticking = true;
-            }
-        }
-        
-        window.addEventListener('scroll', requestTick);
     </script>
 </body>
 </html>
