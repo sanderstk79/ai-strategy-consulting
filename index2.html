@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alex Rivera | Strategy Consultant</title>
+    <title>Tremayne Sanders | AI Strategy Consultant</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         * {
@@ -13,43 +13,44 @@
         }
 
         :root {
-            --primary-color: #FF6B35;
-            --secondary-color: #F7931E;
-            --accent-color: #1A1A1A;
-            --text-primary: #1A1A1A;
-            --text-secondary: #666666;
-            --bg-primary: #FFFFFF;
-            --bg-secondary: #F8F9FA;
-            --bg-dark: #121212;
-            --neon-green: #39FF14;
-            --electric-blue: #00BFFF;
-            --hot-pink: #FF1493;
+            --primary-color: #6366f1;
+            --secondary-color: #ec4899;
+            --accent-color: #f59e0b;
+            --success-color: #10b981;
+            --text-dark: #1f2937;
+            --text-light: #6b7280;
+            --bg-light: #f8fafc;
+            --bg-white: #ffffff;
+            --gradient-1: linear-gradient(135deg, #6366f1, #ec4899);
+            --gradient-2: linear-gradient(135deg, #f59e0b, #ef4444);
+            --gradient-3: linear-gradient(135deg, #10b981, #3b82f6);
+            --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
         }
 
         body {
-            font-family: 'Inter', 'Calibri', sans-serif;
+            font-family: var(--font-primary);
             line-height: 1.6;
-            color: var(--text-primary);
-            background: var(--bg-primary);
+            color: var(--text-dark);
             overflow-x: hidden;
-            transition: all 0.3s ease;
         }
 
-        body.dark-mode {
-            background: var(--bg-dark);
-            color: #FFFFFF;
-        }
-
-        .cursor-follow {
-            position: fixed;
+        /* Custom Cursor */
+        .cursor {
             width: 20px;
             height: 20px;
-            background: var(--primary-color);
+            border: 2px solid var(--primary-color);
             border-radius: 50%;
+            position: fixed;
             pointer-events: none;
             z-index: 9999;
-            transition: transform 0.1s ease;
+            transition: all 0.3s ease;
             mix-blend-mode: difference;
+        }
+
+        .cursor.hover {
+            transform: scale(2);
+            background: var(--primary-color);
+            border-color: var(--secondary-color);
         }
 
         /* Navigation */
@@ -57,48 +58,45 @@
             position: fixed;
             top: 0;
             width: 100%;
-            padding: 1rem 2rem;
             background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(20px);
             z-index: 1000;
+            padding: 1rem 0;
             transition: all 0.3s ease;
-        }
-
-        body.dark-mode .nav {
-            background: rgba(18, 18, 18, 0.95);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            max-width: 1400px;
-            margin: 0 auto;
         }
 
         .logo {
             font-size: 1.5rem;
-            font-weight: 900;
-            color: var(--primary-color);
-            text-decoration: none;
+            font-weight: 800;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .nav-links {
             display: flex;
+            list-style: none;
             gap: 2rem;
-            align-items: center;
         }
 
         .nav-links a {
             text-decoration: none;
-            color: var(--text-primary);
+            color: var(--text-dark);
             font-weight: 500;
-            position: relative;
             transition: all 0.3s ease;
-        }
-
-        body.dark-mode .nav-links a {
-            color: #FFFFFF;
+            position: relative;
+            cursor: pointer;
         }
 
         .nav-links a::after {
@@ -108,7 +106,7 @@
             left: 0;
             width: 0;
             height: 2px;
-            background: var(--primary-color);
+            background: var(--gradient-1);
             transition: width 0.3s ease;
         }
 
@@ -116,305 +114,305 @@
             width: 100%;
         }
 
-        .theme-toggle {
-            background: none;
-            border: 2px solid var(--primary-color);
-            color: var(--primary-color);
-            padding: 0.5rem 1rem;
-            border-radius: 25px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: 600;
-        }
-
-        .theme-toggle:hover {
-            background: var(--primary-color);
-            color: white;
-        }
-
         /* Hero Section */
         .hero {
             min-height: 100vh;
             display: flex;
             align-items: center;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%);
             position: relative;
+            overflow: hidden;
             padding: 0 2rem;
-            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
         }
 
-        body.dark-mode .hero {
-            background: linear-gradient(135deg, var(--bg-dark) 0%, #1e1e1e 100%);
+        .floating-shapes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .shape {
+            position: absolute;
+            background: var(--gradient-1);
+            opacity: 0.1;
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .shape:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .shape:nth-child(2) {
+            width: 120px;
+            height: 120px;
+            top: 60%;
+            right: 10%;
+            animation-delay: 2s;
+        }
+
+        .shape:nth-child(3) {
+            width: 60px;
+            height: 60px;
+            top: 80%;
+            left: 60%;
+            animation-delay: 4s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
         }
 
         .hero-container {
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 4rem;
             align-items: center;
-        }
-
-        .hero-text {
+            position: relative;
             z-index: 10;
         }
 
-        .hero-title {
-            font-size: clamp(3rem, 8vw, 6rem);
+        .hero-content h1 {
+            font-size: 3.5rem;
             font-weight: 900;
-            line-height: 0.9;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        .gradient-text {
+            background: var(--gradient-1);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
 
-        .hero-subtitle {
-            font-size: clamp(1.2rem, 3vw, 2rem);
-            font-weight: 300;
-            margin-bottom: 2rem;
-            color: var(--text-secondary);
-        }
-
-        body.dark-mode .hero-subtitle {
-            color: #CCCCCC;
-        }
-
-        .hero-description {
+        .hero-content p {
             font-size: 1.2rem;
-            margin-bottom: 3rem;
-            color: var(--text-secondary);
-            line-height: 1.8;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            line-height: 1.6;
         }
 
-        body.dark-mode .hero-description {
-            color: #CCCCCC;
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
         }
 
-        .cta-button {
-            display: inline-block;
+        .btn {
             padding: 1rem 2rem;
-            background: var(--primary-color);
-            color: white;
-            text-decoration: none;
+            border: none;
             border-radius: 50px;
             font-weight: 600;
+            text-decoration: none;
             transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
         }
 
-        .cta-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            transition: left 0.5s ease;
+        .btn-primary {
+            background: var(--gradient-1);
+            color: white;
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
         }
 
-        .cta-button:hover::before {
-            left: 100%;
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(99, 102, 241, 0.4);
         }
 
-        .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(255, 107, 53, 0.3);
-        }
-
-        .hero-visual {
-            position: relative;
-            height: 500px;
-        }
-
-        .floating-card {
-            position: absolute;
+        .btn-secondary {
             background: white;
-            border-radius: 15px;
-            padding: 1.5rem;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
+            color: var(--text-dark);
+            border: 2px solid var(--primary-color);
         }
 
-        body.dark-mode .floating-card {
-            background: rgba(30, 30, 30, 0.9);
+        .btn-secondary:hover {
+            background: var(--primary-color);
             color: white;
         }
 
-        .floating-card:hover {
-            transform: translateY(-10px);
+        .hero-stats {
+            display: flex;
+            gap: 2rem;
+            margin-top: 2rem;
         }
 
-        .card-1 {
-            top: 20%;
-            left: 10%;
-            animation: float 6s ease-in-out infinite;
-        }
-
-        .card-2 {
-            top: 50%;
-            right: 20%;
-            animation: float 6s ease-in-out infinite 2s;
-        }
-
-        .card-3 {
-            bottom: 20%;
-            left: 30%;
-            animation: float 6s ease-in-out infinite 4s;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-        }
-
-        /* Stats Section */
-        .stats-section {
-            padding: 5rem 2rem;
-            background: var(--accent-color);
-            color: white;
-        }
-
-        .stats-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
+        .stat {
             text-align: center;
         }
 
-        .stat-item {
-            padding: 2rem;
-            border-radius: 15px;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-        }
-
-        .stat-item:hover {
-            transform: translateY(-10px);
-            background: rgba(255, 255, 255, 0.1);
-        }
-
         .stat-number {
-            font-size: 3rem;
-            font-weight: 900;
+            font-size: 2rem;
+            font-weight: 800;
             color: var(--primary-color);
             display: block;
         }
 
         .stat-label {
-            font-size: 1.2rem;
-            margin-top: 0.5rem;
-            opacity: 0.9;
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        .hero-visual {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .floating-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            position: relative;
+            animation: cardFloat 4s ease-in-out infinite;
+        }
+
+        @keyframes cardFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
         }
 
         /* About Section */
-        .about-section {
-            padding: 5rem 2rem;
-            background: var(--bg-secondary);
+        .about {
+            padding: 8rem 0;
+            background: var(--bg-white);
         }
 
-        body.dark-mode .about-section {
-            background: #1e1e1e;
-        }
-
-        .about-container {
-            max-width: 1400px;
+        .container {
+            max-width: 1200px;
             margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .about-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr 2fr;
             gap: 4rem;
             align-items: center;
         }
 
-        .section-title {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 900;
-            margin-bottom: 2rem;
-            line-height: 1.1;
+        .about-image {
+            position: relative;
         }
 
-        .about-text {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: var(--text-secondary);
+        .about-card {
+            background: var(--gradient-1);
+            border-radius: 20px;
+            padding: 3rem;
+            color: white;
+            position: relative;
+            overflow: hidden;
         }
 
-        body.dark-mode .about-text {
-            color: #CCCCCC;
+        .about-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
         }
 
-        .skills-grid {
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .about-content h3 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-content p {
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .skills {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 1rem;
             margin-top: 2rem;
         }
 
         .skill-tag {
-            padding: 0.8rem 1.5rem;
-            background: var(--primary-color);
-            color: white;
-            border-radius: 25px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
             text-align: center;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-
-        .skill-tag:hover {
-            transform: scale(1.05);
-            background: var(--secondary-color);
+            font-weight: 500;
         }
 
         /* Projects Section */
-        .projects-section {
-            padding: 5rem 2rem;
-        }
-
-        .projects-container {
-            max-width: 1400px;
-            margin: 0 auto;
+        .projects {
+            padding: 8rem 0;
+            background: var(--bg-light);
         }
 
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 3rem;
-            margin-top: 3rem;
+            margin-top: 4rem;
         }
 
         .project-card {
             background: white;
             border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
-            position: relative;
-        }
-
-        body.dark-mode .project-card {
-            background: #1e1e1e;
+            cursor: pointer;
         }
 
         .project-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
         }
 
         .project-image {
-            height: 250px;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            height: 200px;
+            background: var(--gradient-2);
+            position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 3rem;
             color: white;
+            font-size: 3rem;
         }
 
         .project-content {
@@ -422,93 +420,85 @@
         }
 
         .project-title {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             font-weight: 700;
             margin-bottom: 1rem;
         }
 
         .project-description {
-            color: var(--text-secondary);
+            color: var(--text-light);
             margin-bottom: 1.5rem;
             line-height: 1.6;
-        }
-
-        body.dark-mode .project-description {
-            color: #CCCCCC;
         }
 
         .project-tags {
             display: flex;
             flex-wrap: wrap;
             gap: 0.5rem;
+            margin-bottom: 1.5rem;
         }
 
         .project-tag {
+            background: var(--bg-light);
+            color: var(--text-dark);
             padding: 0.3rem 0.8rem;
-            background: var(--bg-secondary);
-            border-radius: 15px;
+            border-radius: 20px;
             font-size: 0.8rem;
-            color: var(--text-secondary);
+            font-weight: 500;
         }
 
-        body.dark-mode .project-tag {
-            background: #333;
-            color: #CCCCCC;
+        .project-results {
+            background: rgba(16, 185, 129, 0.1);
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-results strong {
+            color: var(--success-color);
         }
 
         /* Services Section */
-        .services-section {
-            padding: 5rem 2rem;
-            background: var(--bg-secondary);
-        }
-
-        body.dark-mode .services-section {
-            background: #1e1e1e;
+        .services {
+            padding: 8rem 0;
+            background: var(--bg-white);
         }
 
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-            max-width: 1400px;
-            margin-left: auto;
-            margin-right: auto;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
         }
 
         .service-card {
             background: white;
-            padding: 3rem 2rem;
+            border: 2px solid transparent;
             border-radius: 20px;
+            padding: 3rem 2rem;
             text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
             position: relative;
-            overflow: hidden;
-        }
-
-        body.dark-mode .service-card {
-            background: #1e1e1e;
-        }
-
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            transition: all 0.3s ease;
+            cursor: pointer;
         }
 
         .service-card:hover {
-            transform: translateY(-10px);
+            border-color: var(--primary-color);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(99, 102, 241, 0.1);
         }
 
         .service-icon {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
-            color: var(--primary-color);
+            width: 80px;
+            height: 80px;
+            background: var(--gradient-1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            font-size: 2rem;
+            color: white;
         }
 
         .service-title {
@@ -517,155 +507,172 @@
             margin-bottom: 1rem;
         }
 
+        .service-description {
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
         .service-price {
             font-size: 2rem;
-            font-weight: 900;
+            font-weight: 800;
             color: var(--primary-color);
-            margin: 1rem 0;
+            margin-bottom: 0.5rem;
+        }
+
+        .service-period {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+        }
+
+        .service-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .service-features li {
+            padding: 0.5rem 0;
+            color: var(--text-light);
+        }
+
+        .service-features li::before {
+            content: '✓';
+            color: var(--success-color);
+            font-weight: bold;
+            margin-right: 0.5rem;
         }
 
         /* Contact Section */
-        .contact-section {
-            padding: 5rem 2rem;
-            background: var(--accent-color);
-            color: white;
-            text-align: center;
+        .contact {
+            padding: 8rem 0;
+            background: var(--bg-light);
         }
 
-        .contact-container {
-            max-width: 800px;
-            margin: 0 auto;
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-top: 4rem;
+        }
+
+        .contact-info {
+            space-y: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
         }
 
         .contact-form {
-            display: grid;
-            gap: 1.5rem;
-            margin-top: 3rem;
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
 
         .form-group {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
+            margin-bottom: 2rem;
         }
 
-        .form-input {
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
             padding: 1rem;
-            border: none;
+            border: 2px solid #e5e7eb;
             border-radius: 10px;
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
             font-size: 1rem;
-            backdrop-filter: blur(10px);
+            transition: border-color 0.3s ease;
         }
 
-        .form-input::placeholder {
-            color: rgba(255, 255, 255, 0.7);
-        }
-
-        .form-textarea {
-            padding: 1rem;
-            border: none;
-            border-radius: 10px;
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-            font-size: 1rem;
-            min-height: 120px;
-            resize: vertical;
-            backdrop-filter: blur(10px);
-        }
-
-        .form-textarea::placeholder {
-            color: rgba(255, 255, 255, 0.7);
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
         }
 
         /* Footer */
         .footer {
-            padding: 3rem 2rem;
-            background: var(--bg-dark);
+            background: var(--text-dark);
             color: white;
+            padding: 4rem 0 2rem;
             text-align: center;
         }
 
         .footer-content {
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            padding: 0 2rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
             gap: 2rem;
+            margin-bottom: 2rem;
         }
 
-        .footer-section h3 {
-            margin-bottom: 1rem;
-            color: var(--primary-color);
-        }
-
-        .footer-section a {
+        .footer-links a {
             color: white;
             text-decoration: none;
-            display: block;
-            margin-bottom: 0.5rem;
             transition: color 0.3s ease;
         }
 
-        .footer-section a:hover {
+        .footer-links a:hover {
             color: var(--primary-color);
         }
 
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-
-        .social-links a {
-            display: inline-block;
-            padding: 0.8rem;
-            background: var(--primary-color);
-            color: white;
-            border-radius: 50%;
-            transition: all 0.3s ease;
-        }
-
-        .social-links a:hover {
-            transform: translateY(-3px);
-            background: var(--secondary-color);
-        }
-
-        /* Mobile Responsiveness */
+        /* Responsive Design */
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
             }
-
+            
             .hero-container {
                 grid-template-columns: 1fr;
                 text-align: center;
             }
-
-            .about-container {
-                grid-template-columns: 1fr;
-            }
-
-            .projects-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .form-group {
-                grid-template-columns: 1fr;
-            }
-
-            .hero-title {
-                font-size: 3rem;
-            }
-
-            .section-title {
+            
+            .hero-content h1 {
                 font-size: 2.5rem;
+            }
+            
+            .about-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+            }
+            
+            .hero-stats {
+                justify-content: center;
             }
         }
 
-        /* Scroll animations */
+        /* Scroll Animation */
         .fade-in {
             opacity: 0;
             transform: translateY(30px);
@@ -677,237 +684,268 @@
             transform: translateY(0);
         }
 
-        /* Blog preview section */
-        .blog-section {
-            padding: 5rem 2rem;
+        /* Blog Preview */
+        .blog {
+            padding: 8rem 0;
+            background: var(--bg-white);
         }
 
         .blog-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-            max-width: 1400px;
-            margin-left: auto;
-            margin-right: auto;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
         }
 
         .blog-card {
             background: white;
             border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
-        }
-
-        body.dark-mode .blog-card {
-            background: #1e1e1e;
+            cursor: pointer;
         }
 
         .blog-card:hover {
             transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
         }
 
         .blog-image {
             height: 200px;
-            background: linear-gradient(135deg, var(--neon-green), var(--electric-blue));
+            background: var(--gradient-3);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2rem;
             color: white;
+            font-size: 2rem;
         }
 
         .blog-content {
-            padding: 1.5rem;
+            padding: 2rem;
         }
 
         .blog-date {
-            color: var(--text-secondary);
+            color: var(--text-light);
             font-size: 0.9rem;
-            margin-bottom: 0.5rem;
-        }
-
-        body.dark-mode .blog-date {
-            color: #999;
+            margin-bottom: 1rem;
         }
 
         .blog-title {
             font-size: 1.3rem;
-            font-weight: 600;
+            font-weight: 700;
             margin-bottom: 1rem;
+            line-height: 1.3;
         }
 
         .blog-excerpt {
-            color: var(--text-secondary);
+            color: var(--text-light);
             line-height: 1.6;
-        }
-
-        body.dark-mode .blog-excerpt {
-            color: #CCCCCC;
         }
     </style>
 </head>
 <body>
-    <!-- Custom Cursor -->
-    <div class="cursor-follow"></div>
+    <div class="cursor"></div>
 
     <!-- Navigation -->
     <nav class="nav">
         <div class="nav-container">
-            <a href="#" class="logo">AR</a>
-            <div class="nav-links">
-                <a href="#home">Home</a>
-                <a href="#about">About</a>
-                <a href="#projects">Work</a>
-                <a href="#services">Services</a>
-                <a href="#blog">Blog</a>
-                <a href="#contact">Contact</a>
-                <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
-            </div>
+            <div class="logo">TS</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#blog">Blog</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
         </div>
     </nav>
 
     <!-- Hero Section -->
     <section id="home" class="hero">
-        <div class="hero-container">
-            <div class="hero-text">
-                <h1 class="hero-title">Strategy<br>Redefined</h1>
-                <p class="hero-subtitle">I transform complex business challenges into breakthrough opportunities</p>
-                <p class="hero-description">
-                    Senior Strategy Consultant with 12+ years helping Fortune 500 companies and emerging leaders navigate disruption, optimize operations, and unlock exponential growth. Because sometimes the answer isn't what you think—it's what you haven't thought of yet.
-                </p>
-                <a href="#contact" class="cta-button">Let's Build Something Extraordinary</a>
-            </div>
-            <div class="hero-visual">
-                <div class="floating-card card-1">
-                    <h3>₹2.3B</h3>
-                    <p>Revenue Generated</p>
-                </div>
-                <div class="floating-card card-2">
-                    <h3>89%</h3>
-                    <p>Client Retention</p>
-                </div>
-                <div class="floating-card card-3">
-                    <h3>156</h3>
-                    <p>Projects Delivered</p>
-                </div>
-            </div>
+        <div class="floating-shapes">
+            <div class="shape"></div>
+            <div class="shape"></div>
+            <div class="shape"></div>
         </div>
-    </section>
-
-    <!-- Stats Section -->
-    <section class="stats-section">
-        <div class="stats-container">
-            <div class="stat-item fade-in">
-                <span class="stat-number">12+</span>
-                <span class="stat-label">Years of Strategic Excellence</span>
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>I turn <span class="gradient-text">AI confusion</span> into competitive advantage</h1>
+                <p>Former government digital strategist now helping businesses navigate AI transformation. From blockchain platforms to automated content generation—I bridge the gap between AI possibility and business reality.</p>
+                
+                <div class="cta-buttons">
+                    <a href="#contact" class="btn btn-primary">Start Your AI Strategy</a>
+                    <a href="#projects" class="btn btn-secondary">View Case Studies</a>
+                </div>
+                
+                <div class="hero-stats">
+                    <div class="stat">
+                        <span class="stat-number">30+</span>
+                        <span class="stat-label">Countries Served</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">7+</span>
+                        <span class="stat-label">Years Strategy</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">3</span>
+                        <span class="stat-label">Companies Founded</span>
+                    </div>
+                </div>
             </div>
-            <div class="stat-item fade-in">
-                <span class="stat-number">₹2.3B</span>
-                <span class="stat-label">Revenue Impact Created</span>
-            </div>
-            <div class="stat-item fade-in">
-                <span class="stat-number">47</span>
-                <span class="stat-label">Fortune 500 Clients</span>
-            </div>
-            <div class="stat-item fade-in">
-                <span class="stat-number">89%</span>
-                <span class="stat-label">Client Retention Rate</span>
+            
+            <div class="hero-visual">
+                <div class="floating-card">
+                    <h3 style="margin-bottom: 1rem; color: var(--primary-color);">AI Strategy Workflow</h3>
+                    <div style="display: flex; flex-direction: column; gap: 1rem;">
+                        <div style="display: flex; align-items: center; gap: 1rem;">
+                            <div style="width: 12px; height: 12px; background: var(--success-color); border-radius: 50%;"></div>
+                            <span>Assess Current State</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 1rem;">
+                            <div style="width: 12px; height: 12px; background: var(--accent-color); border-radius: 50%;"></div>
+                            <span>Design AI Solutions</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 1rem;">
+                            <div style="width: 12px; height: 12px; background: var(--primary-color); border-radius: 50%;"></div>
+                            <span>Implement & Scale</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- About Section -->
-    <section id="about" class="about-section">
-        <div class="about-container">
-            <div class="fade-in">
-                <h2 class="section-title">The Thing About Strategy</h2>
-                <p class="about-text">
-                    Look, everyone thinks they understand strategy. But here's what I've learned after 12 years of working with CEOs who couldn't sleep and CFOs who were running out of answers—strategy isn't about perfect plans. It's about... well, it's about seeing what others miss.
-                </p>
-                <p class="about-text">
-                    I started at McKinsey (because of course I did), but the real education came later. Watching a $50M logistics company save itself by doing the exact opposite of what the market research said. Helping a tech startup become profitable by killing their most promising product line. That's when I realized—
-                </p>
-                <p class="about-text">
-                    The best strategies often feel wrong at first. Like swimming upstream when everyone else is floating with the current. But that's where the breakthrough happens. That's where billion-dollar moats get built.
-                </p>
-                <div class="skills-grid">
-                    <div class="skill-tag">Digital Transformation</div>
-                    <div class="skill-tag">Market Entry Strategy</div>
-                    <div class="skill-tag">Operational Excellence</div>
-                    <div class="skill-tag">M&A Advisory</div>
-                    <div class="skill-tag">Growth Strategy</div>
-                    <div class="skill-tag">Change Management</div>
-                </div>
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 class="section-title">The Strategic Mind Behind AI Transformation</h2>
+                <p class="section-subtitle">From managing digital strategy across 30 countries for the British Foreign Office to building AI-powered platforms for startups—I see patterns others miss.</p>
             </div>
-            <div class="fade-in">
-                <div style="height: 400px; background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); border-radius: 20px; display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem;">
-                    📊 Strategy Visualization
+            
+            <div class="about-grid">
+                <div class="about-image fade-in">
+                    <div class="about-card">
+                        <h3>Why I Get AI Strategy</h3>
+                        <p>Most consultants either understand technology OR business strategy. I've spent years in both worlds.</p>
+                        <p>Government taught me stakeholder management at scale. Startups taught me speed and scrappiness. Now I help companies navigate AI transformation without the usual corporate theater.</p>
+                        <div class="skills">
+                            <div class="skill-tag">Digital Diplomacy</div>
+                            <div class="skill-tag">Content Strategy</div>
+                            <div class="skill-tag">AI Implementation</div>
+                            <div class="skill-tag">Project Management</div>
+                            <div class="skill-tag">Data Analytics</div>
+                            <div class="skill-tag">Automation</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="about-content fade-in">
+                    <h3>The truth about AI strategy?</h3>
+                    <p>Everyone's talking about AI transformation, but most companies are stuck in pilot purgatory. They run proof-of-concepts that never scale, chase ChatGPT integrations that don't move the needle, and hire AI experts who can't translate tech into business outcomes.</p>
+                    
+                    <p>I'm different. I don't just understand the technology—I understand organizations. How they really work. How decisions actually get made. How to build consensus among stakeholders who speak different languages.</p>
+                    
+                    <p>My approach isn't about flashy demos or theoretical frameworks. It's about finding the AI applications that will genuinely transform your business, then building the organizational capability to execute them.</p>
+                    
+                    <p><strong>Current Focus:</strong> Building AI Automated Content Generation platform for f/EVO using n8n—turning complex workflows into simple, scalable systems that actually work.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Projects Section -->
-    <section id="projects" class="projects-section">
-        <div class="projects-container">
-            <h2 class="section-title fade-in">Work That Moves Needles</h2>
+    <section id="projects" class="projects">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 class="section-title">AI Strategy in Action</h2>
+                <p class="section-subtitle">Real projects, real results. Here's how I've helped organizations leverage AI to drive growth.</p>
+            </div>
+            
             <div class="projects-grid">
+                <div class="project-card fade-in">
+                    <div class="project-image">🤖</div>
+                    <div class="project-content">
+                        <h3 class="project-title">AI Automated Content Generation Platform</h3>
+                        <p class="project-description">Building a comprehensive AI content automation platform for f/EVO using n8n. System handles content creation, optimization, and distribution across multiple channels with minimal human intervention.</p>
+                        
+                        <div class="project-tags">
+                            <span class="project-tag">n8n Automation</span>
+                            <span class="project-tag">Content Strategy</span>
+                            <span class="project-tag">AI Integration</span>
+                            <span class="project-tag">Workflow Design</span>
+                        </div>
+                        
+                        <div class="project-results">
+                            <strong>Impact:</strong> 80% reduction in content production time, automated multi-channel distribution, scalable content personalization framework
+                        </div>
+                        
+                        <a href="#contact" class="btn btn-primary">Discuss Similar Project</a>
+                    </div>
+                </div>
+                
                 <div class="project-card fade-in">
                     <div class="project-image">🚀</div>
                     <div class="project-content">
-                        <h3 class="project-title">Global Logistics Transformation</h3>
-                        <p class="project-description">
-                            Redesigned supply chain architecture for multinational retailer. Result: 34% cost reduction, 67% faster delivery times. Sometimes you have to break things to rebuild them stronger.
-                        </p>
+                        <h3 class="project-title">IndieBred Digital Launch Strategy</h3>
+                        <p class="project-description">Comprehensive digital strategy for creative platform launch. Developed target audience segmentation, content marketing framework, and multi-channel campaign that drove user acquisition and engagement.</p>
+                        
                         <div class="project-tags">
-                            <span class="project-tag">Supply Chain</span>
-                            <span class="project-tag">Digital Transformation</span>
-                            <span class="project-tag">Cost Optimization</span>
+                            <span class="project-tag">Digital Strategy</span>
+                            <span class="project-tag">Content Marketing</span>
+                            <span class="project-tag">Analytics</span>
+                            <span class="project-tag">Campaign Management</span>
                         </div>
+                        
+                        <div class="project-results">
+                            <strong>Impact:</strong> Successful platform launch, targeted audience acquisition strategy, measurable engagement metrics, scalable growth framework
+                        </div>
+                        
+                        <a href="#contact" class="btn btn-primary">Launch Your Platform</a>
                     </div>
                 </div>
+                
                 <div class="project-card fade-in">
-                    <div class="project-image">💡</div>
+                    <div class="project-image">⛓️</div>
                     <div class="project-content">
-                        <h3 class="project-title">FinTech Market Entry</h3>
-                        <p class="project-description">
-                            Launched digital banking platform in Southeast Asia. From zero to 2M customers in 18 months. The secret? We ignored the incumbents and focused on the underbanked.
-                        </p>
+                        <h3 class="project-title">Blockchain Intelligence Platform</h3>
+                        <p class="project-description">Led content strategy and UX design for MTLLSM blockchain project intelligence platform. Integrated complex data visualization with intuitive user experience for sophisticated financial analysis.</p>
+                        
                         <div class="project-tags">
-                            <span class="project-tag">Market Entry</span>
-                            <span class="project-tag">FinTech</span>
-                            <span class="project-tag">Growth Strategy</span>
+                            <span class="project-tag">Blockchain</span>
+                            <span class="project-tag">UX Strategy</span>
+                            <span class="project-tag">Data Visualization</span>
+                            <span class="project-tag">Platform Design</span>
                         </div>
+                        
+                        <div class="project-results">
+                            <strong>Impact:</strong> Streamlined complex data into actionable insights, improved user engagement, integrated marketing and communication tools
+                        </div>
+                        
+                        <a href="#contact" class="btn btn-primary">Build Your Platform</a>
                     </div>
                 </div>
+                
                 <div class="project-card fade-in">
-                    <div class="project-image">⚡</div>
+                    <div class="project-image">🌍</div>
                     <div class="project-content">
-                        <h3 class="project-title">Healthcare System Optimization</h3>
-                        <p class="project-description">
-                            Streamlined operations for hospital network. Patient wait times down 56%, staff satisfaction up 43%. Health outcomes improved across all metrics. Systems thinking at work.
-                        </p>
+                        <h3 class="project-title">Global Digital Diplomacy Framework</h3>
+                        <p class="project-description">Managed digital strategy across 30+ countries for British Foreign & Commonwealth Office. Developed scalable content management systems, analytics frameworks, and digital asset policies at international scale.</p>
+                        
                         <div class="project-tags">
-                            <span class="project-tag">Healthcare</span>
-                            <span class="project-tag">Operations</span>
-                            <span class="project-tag">Process Excellence</span>
+                            <span class="project-tag">Digital Strategy</span>
+                            <span class="project-tag">Global Scale</span>
+                            <span class="project-tag">Policy Development</span>
+                            <span class="project-tag">Stakeholder Management</span>
                         </div>
-                    </div>
-                </div>
-                <div class="project-card fade-in">
-                    <div class="project-image">🎯</div>
-                    <div class="project-content">
-                        <h3 class="project-title">Tech Startup Scaling</h3>
-                        <p class="project-description">
-                            Strategic pivot for SaaS company struggling with churn. Repositioned from horizontal tool to vertical solution. ARR grew from $2M to $15M in 24 months.
-                        </p>
-                        <div class="project-tags">
-                            <span class="project-tag">SaaS</span>
-                            <span class="project-tag">Product Strategy</span>
-                            <span class="project-tag">Scaling</span>
+                        
+                        <div class="project-results">
+                            <strong>Impact:</strong> Standardized digital operations across 30+ countries, improved content performance, enhanced international digital presence
                         </div>
+                        
+                        <a href="#contact" class="btn btn-primary">Scale Globally</a>
                     </div>
                 </div>
             </div>
@@ -915,134 +953,270 @@
     </section>
 
     <!-- Services Section -->
-    <section id="services" class="services-section">
-        <div class="projects-container">
-            <h2 class="section-title fade-in">How We Work Together</h2>
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 class="section-title">AI Strategy Services</h2>
+                <p class="section-subtitle">From quick wins to comprehensive transformation. Choose the level of support that fits your timeline and goals.</p>
+            </div>
+            
             <div class="services-grid">
                 <div class="service-card fade-in">
                     <div class="service-icon">🎯</div>
-                    <h3 class="service-title">Strategic Assessment</h3>
-                    <div class="service-price">₹2.5L</div>
-                    <p>6-week deep dive into your business. Market analysis, competitive intelligence, internal audit. You'll know exactly where you stand and what needs to change.</p>
+                    <h3 class="service-title">AI Strategy Sprint</h3>
+                    <p class="service-description">Need clarity fast? 2-week intensive to identify your highest-impact AI opportunities and create an execution roadmap.</p>
+                    
+                    <div class="service-price">$8,500</div>
+                    <div class="service-period">2-week engagement</div>
+                    
+                    <ul class="service-features">
+                        <li>Current state assessment</li>
+                        <li>AI opportunity mapping</li>
+                        <li>Implementation roadmap</li>
+                        <li>ROI projections</li>
+                        <li>Technology recommendations</li>
+                        <li>Quick-win identification</li>
+                    </ul>
+                    
+                    <a href="#contact" class="btn btn-primary">Start Sprint</a>
                 </div>
+                
                 <div class="service-card fade-in">
                     <div class="service-icon">🚀</div>
-                    <h3 class="service-title">Growth Strategy</h3>
-                    <div class="service-price">₹8L</div>
-                    <p>12-week comprehensive growth strategy. From market entry to scaling operations. Includes implementation roadmap and team training.</p>
+                    <h3 class="service-title">AI Implementation Project</h3>
+                    <p class="service-description">Ready to build? End-to-end AI solution development with hands-on implementation and team training.</p>
+                    
+                    <div class="service-price">$25,000</div>
+                    <div class="service-period">8-12 week project</div>
+                    
+                    <ul class="service-features">
+                        <li>Custom AI solution development</li>
+                        <li>Technical implementation</li>
+                        <li>Process automation design</li>
+                        <li>Team training & handoff</li>
+                        <li>Performance monitoring setup</li>
+                        <li>Ongoing optimization plan</li>
+                    </ul>
+                    
+                    <a href="#contact" class="btn btn-primary">Launch Project</a>
                 </div>
+                
+                <div class="service-card fade-in">
+                    <div class="service-icon">🔄</div>
+                    <h3 class="service-title">AI Strategy Partner</h3>
+                    <p class="service-description">Your dedicated AI strategist. Monthly retainer for ongoing strategy, implementation support, and optimization.</p>
+                    
+                    <div class="service-price">$12,500</div>
+                    <div class="service-period">per month</div>
+                    
+                    <ul class="service-features">
+                        <li>Strategic planning & guidance</li>
+                        <li>Implementation oversight</li>
+                        <li>Performance optimization</li>
+                        <li>Technology evaluation</li>
+                        <li>Team development</li>
+                        <li>Competitive intelligence</li>
+                    </ul>
+                    
+                    <a href="#contact" class="btn btn-primary">Partner With Me</a>
+                </div>
+                
                 <div class="service-card fade-in">
                     <div class="service-icon">⚡</div>
-                    <h3 class="service-title">Transformation Program</h3>
-                    <div class="service-price">₹15L</div>
-                    <p>6-month end-to-end transformation. Digital, operational, cultural—whatever your organization needs. White-glove service with guaranteed results.</p>
+                    <h3 class="service-title">AI Advisory Sessions</h3>
+                    <p class="service-description">Quick expert guidance when you need it. Hourly consulting for specific challenges and strategic decisions.</p>
+                    
+                    <div class="service-price">$350</div>
+                    <div class="service-period">per hour</div>
+                    
+                    <ul class="service-features">
+                        <li>Strategic consultation</li>
+                        <li>Technical guidance</li>
+                        <li>Problem-solving sessions</li>
+                        <li>Technology evaluation</li>
+                        <li>Implementation planning</li>
+                        <li>Performance review</li>
+                    </ul>
+                    
+                    <a href="#contact" class="btn btn-primary">Book Session</a>
                 </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 4rem;" class="fade-in">
+                <p style="font-size: 1.1rem; color: var(--text-light); margin-bottom: 2rem;">
+                    <strong>Goal:</strong> Help you reach $100K+ in AI-driven value this year.<br>
+                    <strong>Approach:</strong> Start with quick wins, scale what works, kill what doesn't.
+                </p>
+                <a href="#contact" class="btn btn-secondary">Let's Discuss Your Goals</a>
             </div>
         </div>
     </section>
 
     <!-- Blog Section -->
-    <section id="blog" class="blog-section">
-        <div class="projects-container">
-            <h2 class="section-title fade-in">Thoughts That Don't Fit In LinkedIn Posts</h2>
+    <section id="blog" class="blog">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 class="section-title">AI Strategy Insights</h2>
+                <p class="section-subtitle">Practical thoughts on AI implementation, strategy, and what actually works in the real world.</p>
+            </div>
+            
             <div class="blog-grid">
-                <div class="blog-card fade-in">
+                <article class="blog-card fade-in">
                     <div class="blog-image">📊</div>
                     <div class="blog-content">
-                        <div class="blog-date">March 15, 2025</div>
-                        <h3 class="blog-title">Why Most Digital Transformations Fail (And How to Fix Yours)</h3>
-                        <p class="blog-excerpt">
-                            It's not the technology. It's not the budget. It's not even the timeline. After watching 47 digital transformations, I finally figured out what actually breaks them...
-                        </p>
+                        <div class="blog-date">Coming Soon</div>
+                        <h3 class="blog-title">Why Most AI Pilots Never Scale (And How to Fix It)</h3>
+                        <p class="blog-excerpt">The uncomfortable truth about why 80% of AI projects stay stuck in proof-of-concept hell—and the three changes that actually move them to production.</p>
                     </div>
-                </div>
-                <div class="blog-card fade-in">
+                </article>
+                
+                <article class="blog-card fade-in">
                     <div class="blog-image">🎯</div>
                     <div class="blog-content">
-                        <div class="blog-date">March 8, 2025</div>
-                        <h3 class="blog-title">The Contrarian's Guide to Market Entry</h3>
-                        <p class="blog-excerpt">
-                            When everyone zigs, zag. When everyone builds for the obvious customer, find the invisible one. Here's how three companies won by doing exactly what the experts said not to do...
-                        </p>
+                        <div class="blog-date">Coming Soon</div>
+                        <h3 class="blog-title">The Government-to-Startup AI Playbook</h3>
+                        <p class="blog-excerpt">What 7 years in digital diplomacy taught me about implementing AI at scale. Lessons from managing strategy across 30 countries.</p>
                     </div>
-                </div>
-                <div class="blog-card fade-in">
-                    <div class="blog-image">💡</div>
+                </article>
+                
+                <article class="blog-card fade-in">
+                    <div class="blog-image">🤖</div>
                     <div class="blog-content">
-                        <div class="blog-date">February 28, 2025</div>
-                        <h3 class="blog-title">The Strategy Paradox: Why Perfect Plans Fail</h3>
-                        <p class="blog-excerpt">
-                            The more detailed your strategic plan, the more likely it is to fail spectacularly. Sounds backwards? Let me explain why uncertainty is your friend...
-                        </p>
+                        <div class="blog-date">Coming Soon</div>
+                        <h3 class="blog-title">Building AI Content Systems That Actually Work</h3>
+                        <p class="blog-excerpt">Inside the f/EVO automation platform: how we built content generation that scales without losing quality or brand voice.</p>
                     </div>
-                </div>
+                </article>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="contact-section">
-        <div class="contact-container">
-            <h2 class="section-title fade-in">Let's Talk Strategy</h2>
-            <p class="fade-in">Ready to turn complexity into clarity? Drop me a line. First coffee is on me.</p>
-            <form class="contact-form fade-in">
-                <div class="form-group">
-                    <input type="text" class="form-input" placeholder="Your Name" required>
-                    <input type="email" class="form-input" placeholder="Email Address" required>
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 class="section-title">Ready to Transform Your AI Strategy?</h2>
+                <p class="section-subtitle">Let's discuss how AI can drive real results for your business. No corporate theater, just practical solutions.</p>
+            </div>
+            
+            <div class="contact-grid">
+                <div class="contact-info fade-in">
+                    <div class="contact-item">
+                        <div class="contact-icon">📧</div>
+                        <div>
+                            <h4>Email</h4>
+                            <p>sanderstk@gmail.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">💼</div>
+                        <div>
+                            <h4>LinkedIn</h4>
+                            <p>linkedin.com/in/tremayne-sanders-bb68924/</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">⚡</div>
+                        <div>
+                            <h4>Response Time</h4>
+                            <p>Within 24 hours</p>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 3rem;">
+                        <h4 style="margin-bottom: 1rem;">What to expect:</h4>
+                        <ul style="list-style: none; color: var(--text-light);">
+                            <li style="margin-bottom: 0.5rem;">✓ 30-minute discovery call</li>
+                            <li style="margin-bottom: 0.5rem;">✓ Honest assessment of fit</li>
+                            <li style="margin-bottom: 0.5rem;">✓ Clear next steps</li>
+                            <li style="margin-bottom: 0.5rem;">✓ No sales pitches</li>
+                        </ul>
+                    </div>
                 </div>
-                <input type="text" class="form-input" placeholder="Company & Role" required>
-                <textarea class="form-textarea" placeholder="Tell me about your challenge. What's keeping you up at night?" required></textarea>
-                <button type="submit" class="cta-button">Start the Conversation</button>
-            </form>
+                
+                <div class="contact-form fade-in">
+                    <h3 style="margin-bottom: 2rem; color: var(--text-dark);">Start the Conversation</h3>
+                    <form>
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="company">Company</label>
+                            <input type="text" id="company" name="company">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="challenge">What's your biggest AI challenge right now?</label>
+                            <textarea id="challenge" name="challenge" rows="4" placeholder="Tell me about your current situation, goals, or specific challenges you're facing with AI implementation..."></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
+                    </form>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer class="footer">
         <div class="footer-content">
-            <div class="footer-section">
-                <h3>Connect</h3>
-                <a href="mailto:alex@strategyconsulting.com">alex@strategyconsulting.com</a>
-                <a href="tel:+919876543210">+91 98765 43210</a>
-                <a href="#">Download Case Studies</a>
+            <div class="footer-links">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#projects">Projects</a>
+                <a href="#services">Services</a>
+                <a href="#blog">Blog</a>
+                <a href="#contact">Contact</a>
             </div>
-            <div class="footer-section">
-                <h3>Locations</h3>
-                <a href="#">Mumbai (HQ)</a>
-                <a href="#">Bangalore</a>
-                <a href="#">Dubai</a>
-                <a href="#">Singapore</a>
-            </div>
-            <div class="footer-section">
-                <h3>Resources</h3>
-                <a href="#">Strategy Framework Guide</a>
-                <a href="#">Digital Transformation Toolkit</a>
-                <a href="#">Market Entry Playbook</a>
-            </div>
+            <p>&copy; 2025 Tremayne Sanders. AI Strategy Consultant.</p>
+            <p style="color: var(--text-light); font-size: 0.9rem; margin-top: 1rem;">
+                Turning AI confusion into competitive advantage, one strategy at a time.
+            </p>
         </div>
-        <div class="social-links">
-            <a href="#">📧</a>
-            <a href="#">💼</a>
-            <a href="#">🐦</a>
-            <a href="#">📚</a>
-        </div>
-        <p style="margin-top: 2rem; opacity: 0.7;">© 2025 Alex Rivera. This website runs on caffeine and contrarian thinking.</p>
     </footer>
 
     <script>
         // Custom cursor
-        const cursor = document.querySelector('.cursor-follow');
+        const cursor = document.querySelector('.cursor');
+        const links = document.querySelectorAll('a, button, .project-card, .service-card, .blog-card');
+
         document.addEventListener('mousemove', (e) => {
             cursor.style.left = e.clientX + 'px';
             cursor.style.top = e.clientY + 'px';
         });
 
-        // Dark mode toggle
-        function toggleTheme() {
-            document.body.classList.toggle('dark-mode');
-            const button = document.querySelector('.theme-toggle');
-            button.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
-        }
+        links.forEach(link => {
+            link.addEventListener('mouseenter', () => {
+                cursor.classList.add('hover');
+            });
+            
+            link.addEventListener('mouseleave', () => {
+                cursor.classList.remove('hover');
+            });
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
 
         // Scroll animations
         const observerOptions = {
@@ -1062,69 +1236,32 @@
             observer.observe(el);
         });
 
-        // Smooth scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
+        // Navigation background on scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('.nav');
+            if (window.scrollY > 100) {
+                nav.style.background = 'rgba(255, 255, 255, 0.98)';
+                nav.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                nav.style.background = 'rgba(255, 255, 255, 0.95)';
+                nav.style.boxShadow = 'none';
+            }
         });
 
         // Form submission
-        document.querySelector('.contact-form').addEventListener('submit', function(e) {
+        document.querySelector('form').addEventListener('submit', (e) => {
             e.preventDefault();
-            alert('Thanks for reaching out! I\'ll get back to you within 24 hours.');
+            alert('Thank you for your message! I\'ll get back to you within 24 hours.');
         });
 
-        // Add hover effects to cards
-        document.querySelectorAll('.project-card, .service-card, .blog-card').forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-10px) scale(1.02)';
-            });
-            
-            card.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0) scale(1)';
+        // Dynamic project cards interaction
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.addEventListener('click', () => {
+                // Could integrate with modal or detailed view
+                const contactSection = document.querySelector('#contact');
+                contactSection.scrollIntoView({ behavior: 'smooth' });
             });
         });
-
-        // Parallax effect for hero section
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const hero = document.querySelector('.hero');
-            hero.style.transform = `translateY(${scrolled * 0.5}px)`;
-        });
-
-        // Dynamic stats counter
-        function animateCounter(element, target) {
-            let current = 0;
-            const increment = target / 100;
-            const timer = setInterval(() => {
-                current += increment;
-                if (current >= target) {
-                    current = target;
-                    clearInterval(timer);
-                }
-                element.textContent = Math.floor(current);
-            }, 20);
-        }
-
-        // Initialize counters when stats section is visible
-        const statsSection = document.querySelector('.stats-section');
-        const statsObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    // Animate number counters here if needed
-                    statsObserver.unobserve(entry.target);
-                }
-            });
-        });
-        statsObserver.observe(statsSection);
     </script>
 </body>
 </html>
