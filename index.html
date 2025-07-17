@@ -360,7 +360,7 @@
 
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: var(--spacing-md);
         }
 
@@ -372,6 +372,23 @@
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
+        }
+        .service-card.featured {
+            border-color: #47294c;
+            transform: scale(1.02);
+        }
+
+        .service-card.featured::before {
+            content: 'MOST POPULAR';
+            position: absolute;
+            top: 20px;
+            right: -30px;
+            background: linear-gradient(135deg, #47294c, #816f7d);
+            color: #faf4fc;
+            padding: 8px 40px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            transform: rotate(45deg);
         }
 
         .service-card::before {
@@ -417,6 +434,25 @@
             font-weight: 700;
             color: var(--color-light);
             font-family: var(--font-mono);
+        }
+
+        .cta-button {
+            display: block;
+            width: 100%;
+            background: linear-gradient(135deg, #47294c, #816f7d);
+            color: #faf4fc;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            text-align: center;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(71, 41, 76, 0.3);
         }
 
         /* About Section */
@@ -730,7 +766,7 @@
                     <a href="mailto:sanderstk@gmail.com?subject=AI Digital Strategy Audit" class="cta-button">Get Your Audit</a>
                 </div>
                 
-                <div class="service-card fade-in">
+                <div class="service-card fade-in featured">
                     <span class="service-icon">⚡</span>
                     <h3 class="service-title">Content Automation</h3>
                     <p class="service-description">Custom AI systems that generate content, optimize campaigns, and automate social media workflows.</p>
