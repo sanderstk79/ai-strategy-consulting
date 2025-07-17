@@ -454,7 +454,7 @@
         }
 
         /* Consulting Services */
-        .consulting-section {
+        .service-card.consulting-section {
             background: white;
             padding: 60px 40px;
             border-radius: 15px;
@@ -462,14 +462,14 @@
             margin-bottom: 80px;
         }
 
-        .consulting-grid {
+        .service-card.consulting-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
             margin-top: 40px;
         }
 
-        .consulting-card {
+        .service-card.consulting-card {
             background: #faf4fc;
             padding: 30px;
             border-radius: 12px;
@@ -477,37 +477,37 @@
             transition: all 0.3s ease;
         }
 
-        .consulting-card:hover {
+        .service-card.consulting-card:hover {
             border-color: #47294c;
             transform: translateY(-5px);
         }
 
-        .consulting-card h3 {
+        .service-card.consulting-card h3 {
             font-size: 1.5rem;
             color: #010101;
             margin-bottom: 10px;
             font-weight: 600;
         }
 
-        .consulting-card .price {
+        .service-card.consulting-card .price {
             font-size: 2rem;
             font-weight: 700;
             color: #47294c;
             margin-bottom: 15px;
         }
 
-        .consulting-card ul {
+        .service-card.consulting-card ul {
             list-style: none;
         }
 
-        .consulting-card li {
+        .service-card.consulting-card li {
             color: #816f7d;
             margin-bottom: 8px;
             padding-left: 20px;
             position: relative;
         }
 
-        .consulting-card li::before {
+        .service-card.consulting-card li::before {
             content: '▸';
             position: absolute;
             left: 0;
@@ -871,6 +871,42 @@
                 </div>
             </div>
         </div>
+        <div class="section-header">
+                    <h2>⚡ Consulting Services</h2>
+                    <p>Flexible hourly and daily rates for ongoing support and strategic guidance</p>
+                </div>
+                <div class="service-card consulting-grid">
+                    <div class="consulting-card">
+                        <h3>Strategic Consulting</h3>
+                        <div class="price">$175/hour</div>
+                        <ul>
+                            <li>AI strategy development</li>
+                            <li>Digital transformation planning</li>
+                            <li>Technology stack recommendations</li>
+                            <li>Team workshops & training</li>
+                        </ul>
+                    </div>
+                    <div class="service-card consulting-card">
+                        <h3>Implementation Support</h3>
+                        <div class="price">$150/hour</div>
+                        <ul>
+                            <li>Technical guidance during rollouts</li>
+                            <li>Troubleshooting & optimization</li>
+                            <li>Staff training sessions</li>
+                            <li>Performance analysis</li>
+                        </ul>
+                    </div>
+                    <div class="service-card consulting-card">
+                        <h3>Executive Advisory</h3>
+                        <div class="price">$1,200/day</div>
+                        <ul>
+                            <li>C-suite strategy sessions</li>
+                            <li>Board presentations</li>
+                            <li>Crisis digital response</li>
+                            <li>High-stakes campaign planning</li>
+                        </ul>
+                    </div>
+                </div>
     </section>
 
     
